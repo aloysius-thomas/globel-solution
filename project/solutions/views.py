@@ -5,7 +5,6 @@ from django.shortcuts import render
 from accounts.models import ClientProfile
 from accounts.models import StaffProfile
 from accounts.models import StudentProfile
-from solutions.forms import ClientRequestForm
 from solutions.forms import StaffForm
 from solutions.forms import StudentForm
 from solutions.models import ClientRequests
@@ -66,3 +65,18 @@ def client_request_view(request):
 
 def client_request_success_view(request):
     return render(request, 'client_request_success.html')
+
+
+@admin_required()
+def client_request_list(request):
+    pending = ClientRequests.objects.filter(status='pending')
+    approved = ClientRequests.objects.filter(status='approved')
+    rejected = ClientRequests.objects.filter(status='rejected')
+    title = 'Client Requests'
+    context = {
+        'pending': pending,
+        'approved': approved,
+        'rejected': rejected,
+        'title': title
+    }
+    return render(request, 'admin/client_request_list.html', context)
