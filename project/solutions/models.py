@@ -22,6 +22,7 @@ class Service(models.Model):
     start_date = models.DateField()
     finished = models.DateField(blank=True, null=True)
     remarks = models.CharField(max_length=100)
+    due_date = models.DateField(blank=True, null=True)
     status_updated_on = models.DateField(auto_now=True)
 
 
@@ -63,3 +64,8 @@ class JobAllocationRequest(models.Model):
     service = models.ForeignKey(to=Service, on_delete=models.CASCADE)
     status = models.CharField(choices=SERVICES, max_length=32, default='pending')
     created_on = models.DateTimeField(auto_now_add=True, )
+
+
+class Feedback(models.Model):
+    user = models.ForeignKey(to=UserRegistration, on_delete=models.CASCADE)
+    feedback = models.TextField()

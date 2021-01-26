@@ -12,7 +12,7 @@ SERVICES = (
     ('graphic-design', 'Graphic Design'),
     ('application-development', 'Application Development'),
     ('advertisement-creation', 'Advertisement Creation'),
-    ('digital-marketing', 'Advertisement'),
+    ('digital-marketing', 'Digital Marketing'),
     ('project-support', 'Project Support'),
 )
 
