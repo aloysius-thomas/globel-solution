@@ -23,7 +23,9 @@ class Service(models.Model):
     finished = models.DateField(blank=True, null=True)
     remarks = models.CharField(max_length=100)
     due_date = models.DateField(blank=True, null=True)
+    status = models.CharField(max_length=32, default='Project Started')
     status_updated_on = models.DateField(auto_now=True)
+    created = models.DateField(auto_now_add=True)
 
 
 class Comments(models.Model):
