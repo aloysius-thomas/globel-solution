@@ -43,19 +43,19 @@
                             {{ form.phone_number|as_crispy_field }}
                         </div>
                         <div class="form-group col-md-4 mb-0">
-                            {{ form.position|as_crispy_field }}
+                            {{ form.age|as_crispy_field }}
                         </div>
                         <div class="form-group col-md-4 mb-0">
-                            {{ form.experience|as_crispy_field }}
+                            {{ form.college|as_crispy_field }}
                         </div>
                         <div class="form-group col-md-4 mb-0">
-                            {{ form.qualification|as_crispy_field }}
+                            {{ form.course|as_crispy_field }}
+                        </div>
+                        <div class="form-group col-md-6 mb-0">
+                            {{ form.project_due_date|as_crispy_field }}
                         </div>
                         <div class="form-group col-md-4 mb-0">
-                            {{ form.salary|as_crispy_field }}
-                        </div>
-                        <div class="form-group col-md-4 mb-0">
-                            {{ form.skills|as_crispy_field }}
+                            {{ form.fees|as_crispy_field }}
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
@@ -70,7 +70,7 @@
                         <th scope="col">Username</th>
                         <th scope="col">Name</th>
                         <th scope="col">Phone</th>
-                        <th scope="col">Position</th>
+                        <th scope="col">College</th>
                         <th scope="col"></th>
                     </tr>
                     </thead>
@@ -80,7 +80,7 @@
                             <td>{{ data.user.username }}</td>
                             <td>{{ data.user.get_full_name }}</td>
                             <td>{{ data.user.phone_number }}</td>
-                            <td>{{ data.position }}</td>
+                            <td>{{ data.college }}</td>
                             <td></td>
                         </tr>
                     {% endfor %}
