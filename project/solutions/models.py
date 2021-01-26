@@ -6,7 +6,7 @@ from accounts.models import UserRegistration
 
 
 class ClientRequests(models.Model):
-    client = models.ForeignKey(on_delete=models.CASCADE, to=UserRegistration)
+    client = models.ForeignKey(on_delete=models.CASCADE, to=UserRegistration, blank=True, null=True)
     name = models.CharField(max_length=150)
     phone_number = models.CharField(validators=[phone_regex], max_length=17)
     message = models.TextField()
@@ -17,7 +17,8 @@ class ClientRequests(models.Model):
 class Service(models.Model):
     service = models.CharField(choices=SERVICES, max_length=32)
     client = models.ForeignKey(UserRegistration, on_delete=models.CASCADE, related_name='service_client')
-    staff = models.ForeignKey(UserRegistration, on_delete=models.CASCADE, related_name='service_staff')
+    staff = models.ForeignKey(UserRegistration, on_delete=models.CASCADE, related_name='service_staff', blank=True,
+                              null=True)
     start_date = models.DateField()
     finished = models.DateField(blank=True, null=True)
     remarks = models.CharField(max_length=100)
@@ -36,9 +37,15 @@ class Notify(models.Model):
     notification = models.CharField(max_length=256)
 
 
-class StudentAttend(models.Model):
-    student_id = models.ForeignKey(UserRegistration, on_delete=models.CASCADE, blank=True, null=True)
-    attend_per = models.CharField(max_length=10)
+class Attendance(models.Model):
+    ATTENDANCE_STATUS = (
+        ('percent', 'Percent'),
+        ('absent', 'Absent'),
+        ('pending', 'Pending'),
+    )
+    user = models.ForeignKey(to=UserRegistration, on_delete=models.CASCADE)
+    status = models.CharField(choices=ATTENDANCE_STATUS, max_length=32, default='pending')
+    date = models.DateField()
 
 
 class Leaves(models.Model):
