@@ -642,27 +642,31 @@
         </div>
     </section>
 
-    <section class="ftco-appointment ftco-section img" style="background-image: url(static/publicapp/images/bg_2.jpg);">
+    <section class="ftco-appointment ftco-section img" style="background-image: url('static/images/bg_2.jpg');">
         <div class="overlay"></div>
         <div class="container">
             <div class="row">
                 <div class="col-md-6 half ftco-animate">
                     <h2 class="mb-4">Don't hesitate to contact us</h2>
-                    <form action="#" class="appointment">
+                    <form action="{% url 'client-request-create' %}" class="appointment" method="get">
+                        {% csrf_token %}
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Your Name">
+                                    <input type="text" class="form-control" placeholder="Your Name" name="name"
+                                           required>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Email">
+                                    <input type="text" class="form-control" placeholder="Email" name="email"
+                                           required>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Phone Number">
+                                    <input type="text" class="form-control" placeholder="Phone Number"
+                                           name="phone_number" required>
                                 </div>
                             </div>
                             <div class="col-md-12">
@@ -670,16 +674,14 @@
                                     <div class="form-field">
                                         <div class="select-wrap">
                                             <div class="icon"><span class="fa fa-chevron-down"></span></div>
-                                            <select name="" id="" class="form-control">
-                                                <option value="">Services</option>
-                                                <option value="">Web Design</option>
-                                                <option value="">Web Development</option>
-                                                <option value="">Graphics</option>
-                                                <option value="">Ad creation</option>
-                                                <option value="">Digital Marketing</option>
-                                                <option value="">Applications</option>
-                                                <option value="">Project Supporting</option>
-
+                                            <select name="service" id="" class="form-control">
+                                                <option value="web-design">Web Design</option>
+                                                <option value="web-development">Web Development</option>
+                                                <option value="graphic-design">Graphics</option>
+                                                <option value="advertisement-creation">Ad creation</option>
+                                                <option value="digital-marketing">Digital Marketing</option>
+                                                <option value="application-development">Applications</option>
+                                                <option value="project-support">Project Supporting</option>
                                             </select>
                                         </div>
                                     </div>
@@ -687,13 +689,13 @@
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <textarea name="" id="" cols="30" rows="7" class="form-control"
+                                    <textarea name="message" id="" cols="30" rows="7" class="form-control"
                                               placeholder="Message"></textarea>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <input type="submit" value="Send message" class="btn btn-primary py-3 px-4">
+                                    <button type="submit" value="Send message" class="btn btn-primary py-3 px-4">
                                 </div>
                             </div>
                         </div>

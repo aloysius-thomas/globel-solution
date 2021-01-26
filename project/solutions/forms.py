@@ -2,6 +2,7 @@ from django import forms
 
 from accounts.models import phone_regex
 from accounts.models import UserRegistration
+from solutions.models import ClientRequests
 
 
 class UserForm(forms.ModelForm):
@@ -79,3 +80,15 @@ class StudentForm(UserForm):
         fees = self.cleaned_data.get('fees')
         profile = StudentProfile(age=age, college=college, course=course, project_due_date=project_due_date, fees=fees)
         profile.save()
+
+
+class ClientRequestForm(forms.ModelForm):
+    class Meta:
+        model = ClientRequests
+        fields = {
+            'name',
+            'email',
+            'phone_number',
+            'message',
+            'service',
+        }

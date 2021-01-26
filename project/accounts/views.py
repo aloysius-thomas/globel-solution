@@ -6,10 +6,11 @@ from django.shortcuts import redirect
 from django.shortcuts import render
 
 from accounts.forms import LoginForm
+from solutions.forms import ClientRequestForm
 
 
 def home(request):
-    return render(request, 'home.html', {})
+    return render(request, 'home.html', {'form': ClientRequestForm()})
 
 
 @login_required

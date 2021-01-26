@@ -8,6 +8,7 @@ from accounts.models import UserRegistration
 class ClientRequests(models.Model):
     client = models.ForeignKey(on_delete=models.CASCADE, to=UserRegistration, blank=True, null=True)
     name = models.CharField(max_length=150)
+    email = models.EmailField(default='example@email.com')
     phone_number = models.CharField(validators=[phone_regex], max_length=17)
     message = models.TextField()
     service = models.CharField(choices=SERVICES, max_length=32)
