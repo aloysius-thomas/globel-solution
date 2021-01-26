@@ -11,7 +11,7 @@ class ClientRequests(models.Model):
     phone_number = models.CharField(validators=[phone_regex], max_length=17)
     message = models.TextField()
     service = models.CharField(choices=SERVICES, max_length=32)
-    status = models.CharField(choices=SERVICES, max_length=32)
+    status = models.CharField(choices=SERVICES, max_length=32, default='pending')
 
 
 class Service(models.Model):
@@ -48,10 +48,11 @@ class Leaves(models.Model):
     reason = models.CharField(max_length=10)
     leave_type = models.CharField(max_length=10)
     comment = models.CharField(max_length=50, blank=True, null=True)
+    status = models.CharField(choices=SERVICES, max_length=32, default='pending')
 
 
 class JobAllocationRequest(models.Model):
     staff = models.ForeignKey(UserRegistration, on_delete=models.CASCADE)
     service = models.ForeignKey(to=Service, on_delete=models.CASCADE)
-    status = models.CharField(choices=SERVICES, max_length=32)
-    created_on = models.DateTimeField(auto_now_add=True)
+    status = models.CharField(choices=SERVICES, max_length=32, default='pending')
+    created_on = models.DateTimeField(auto_now_add=True, )
