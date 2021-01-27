@@ -14,6 +14,7 @@ from solutions.views import service_detail_view
 from solutions.views import service_list_view
 from solutions.views import staff_create_list_view
 from solutions.views import student_create_list_view
+from solutions.views import student_projects
 from solutions.views import write_feedback
 
 urlpatterns = [
@@ -33,4 +34,5 @@ urlpatterns = [
     path('comment/<int:project_id>/', comment_project_view, name='comment-project-view'),
     path('assign-jobs/', assign_job, name='assign-jobs'),
     path('feedback/', write_feedback, name='feedback'),
+    path('student/projects/', student_projects, name='student-projects'),
 ]

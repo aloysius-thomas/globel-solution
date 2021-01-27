@@ -1,6 +1,8 @@
 from django.contrib.auth.models import AbstractUser
 from django.core.validators import RegexValidator
 from django.db import models
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$',
                              message=
@@ -63,7 +65,14 @@ class StudentProfile(models.Model):
     fees = models.IntegerField()
 
 
+@receiver(post_save, sender=StudentProfile)
+def create_auth_token(sender, instance=None, created=False, **kwargs):
+    if created:
+        from solutions.models import Service
+        from datetime import datetime
+        Service.objects.create(service='project-support', client=instance.user, start_date=datetime.now())
+
+
 class ClientProfile(models.Model):
     user = models.ForeignKey(to=UserRegistration, on_delete=models.CASCADE)
     service = models.CharField(choices=SERVICES, max_length=32)
-

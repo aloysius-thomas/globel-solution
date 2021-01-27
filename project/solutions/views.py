@@ -246,3 +246,10 @@ def write_feedback(request):
     else:
         form = FeedbackForm()
     return render(request, 'admin/feedback_create.html', {'form': form, 'title': title})
+
+
+@login_required()
+def student_projects(request):
+    title = 'My Projects'
+    data = Service.objects.filter(client=request.user)
+    return render(request, 'admin/services_list.html', {'title': title, 'data': data})
