@@ -119,11 +119,10 @@ def approve_client_request_view(request, request_id):
             message = f"Hi {cq.name},\n your request for {cq.get_service_display()} is approved"
             f". \nplease login using given credentials \n\n Username: {username}\n Password: {password}"
         else:
-            message = f"Hi {cq.name},\n your request for {cq.get_service_display()} is approved"
+            message = f"Hi {cq.name},\n your request for {cq.get_service_display()} is approved\nplease login using your user name and password"
 
         service = Service.objects.create(service=cq.service, client=cq.client, start_date=datetime.datetime.now())
         service.save()
-        f". \nplease login using your user name and password"
         cq.status = 'approved'
         send_email(
             subject="Your request is accepted",
@@ -131,4 +130,21 @@ def approve_client_request_view(request, request_id):
             recipient_list=[service.client.email, ]
         )
         messages.success(request, 'Request accepted and email send')
+        return redirect('client-request-list')
+
+
+@admin_required()
+def reject_client_request_view(request, request_id):
+    try:
+        cq = ClientRequests.objects.get(id=request_id)
+    except ClientRequests.DoesNotExist:
+        messages.error(request, 'not found')
+    else:
+        cq.status = 'rejected'
+        cq.save()
+        send_email(
+            subject="Your request is rejected",
+            message=f'Sorry {cq.name} your request for {cq.get_service_display()} service is rejected',
+            recipient_list=[cq.client.email, ]
+        )
         return redirect('client-request-list')
