@@ -124,6 +124,7 @@ def approve_client_request_view(request, request_id):
         service = Service.objects.create(service=cq.service, client=cq.client, start_date=datetime.datetime.now())
         service.save()
         cq.status = 'approved'
+        cq.save()
         send_email(
             subject="Your request is accepted",
             message=message,
@@ -145,6 +146,6 @@ def reject_client_request_view(request, request_id):
         send_email(
             subject="Your request is rejected",
             message=f'Sorry {cq.name} your request for {cq.get_service_display()} service is rejected',
-            recipient_list=[cq.client.email, ]
+            recipient_list=[cq.email, ]
         )
         return redirect('client-request-list')

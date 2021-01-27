@@ -25,14 +25,14 @@
                             <td>{{ item.name }}</td>
                             <td>{{ item.email }}</td>
                             <td>{{ item.phone_number }}</td>
-                            <td>{{ item.get_service_display }} Days</td>
+                            <td>{{ item.get_service_display }}</td>
                             <td>{{ item.message }}</td>
                             <td>
                                 <div class="btn-group-sm">
-                                    <a href="{% url 'client-request-reject' %}">
+                                    <a href="{% url 'client-request-reject' item.id %}">
                                         <button class="btn btn-danger">Reject</button>
                                     </a>
-                                    <a href="{% url 'client-request-accept' %}">
+                                    <a href="{% url 'client-request-accept' item.id %}">
                                         <button class="btn btn-success">Approve</button>
                                     </a>
                                 </div>

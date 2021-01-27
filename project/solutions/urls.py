@@ -16,6 +16,6 @@ urlpatterns = [
     path('users/student/', student_create_list_view, name='student-create-list'),
     path('users/client/', client_list_view, name='client-list'),
     path('client-requests/', client_request_list, name='client-request-list'),
-    path('client-requests/accept/', approve_client_request_view, name='client-request-accept'),
-    path('client-requests/reject/', reject_client_request_view, name='client-request-reject'),
+    path('client-requests/<int:request_id>/accept/', approve_client_request_view, name='client-request-accept'),
+    path('client-requests//<int:request_id>/reject/', reject_client_request_view, name='client-request-reject'),
 ]
