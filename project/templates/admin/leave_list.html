@@ -1,0 +1,47 @@
+{% extends 'base-admin.html' %}
+{% block title %}
+    {{ title }}
+{% endblock %}
+{% block content %}
+    <h3>{{ title }}</h3>
+    <div class="card">
+        <h5 class="card-header" style="color: blue">Pending</h5>
+        <div class="card-body">
+            {% if list_data %}
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Reason</th>
+                        <th scope="col">Status</th>
+                        <th scope="col"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for data in list_data %}
+                        <tr>
+                            <td>{{ data.taken_by.get_full_name }}</td>
+                            <td>{{ data.from_date | date }} to {{ data.to_date |date }}</td>
+                            <td>{{ data.reason }}</td>
+                            <td>{{ data.get_status_display }}</td>
+                            <td>
+                                <div class="btn-group-sm">
+                                    <a href="{% url 'staff-leave-request-approve' data.id %}">
+                                        <button class="btn btn-danger">Reject</button>
+                                    </a>
+                                    <a href="{% url 'staff-leave-request-reject' data.id %}">
+                                        <button class="btn btn-success">Approve</button>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p class="alert alert-info m-1"> No Data</p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

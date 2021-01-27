@@ -380,3 +380,51 @@ def mark_absent(request, obj_id):
         attendance.status = 'absent'
         attendance.save()
         return redirect('staff-students-attendance')
+
+
+@admin_required()
+def staff_leave_request_list(request):
+    title = 'Staff Leave Requests'
+    list_data = Leaves.objects.filter(taken_by__is_staff=True, status='pending')
+    return render(request, 'admin/leave_list.html', {'title': title, 'list_data': list_data})
+
+
+@admin_required()
+def student_leave_request_list(request):
+    title = 'Staff Leave Requests'
+    list_data = Leaves.objects.filter(taken_by__is_student=True, status='pending')
+    return render(request, 'admin/leave_list.html', {'title': title, 'list_data': list_data})
+
+
+@login_required
+def approve_leave_request(request, obj_id):
+    try:
+        leave = Leaves.objects.get(id=obj_id)
+    except Leaves.DoesNotExist:
+        return HttpResponseNotFound('Not Found')
+    else:
+        leave.status = 'approved'
+        leave.save()
+        messages.success(request, 'Leave Approved')
+        if leave.taken_by.is_staff:
+            url = redirect('staff-leave-request-list')
+        else:
+            url = redirect('student-leave-request-list')
+        return url
+
+
+@login_required
+def reject_leave_request(request, obj_id):
+    try:
+        leave = Leaves.objects.get(id=obj_id)
+    except Leaves.DoesNotExist:
+        return HttpResponseNotFound('Not Found')
+    else:
+        leave.status = 'rejected'
+        leave.save()
+        messages.success(request, 'Leave Rejected')
+        if leave.taken_by.is_staff:
+            url = redirect('staff-leave-request-list')
+        else:
+            url = redirect('student-leave-request-list')
+        return url

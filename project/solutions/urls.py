@@ -2,6 +2,7 @@ from django.urls import path
 
 from solutions.views import accept_job
 from solutions.views import approve_client_request_view
+from solutions.views import approve_leave_request
 from solutions.views import assign_job
 from solutions.views import client_list_view
 from solutions.views import client_request_list
@@ -17,12 +18,15 @@ from solutions.views import programing_languages_create_list_view
 from solutions.views import programing_languages_delete_view
 from solutions.views import reject_client_request_view
 from solutions.views import reject_job
+from solutions.views import reject_leave_request
 from solutions.views import request_leave
 from solutions.views import request_service
 from solutions.views import service_detail_view
 from solutions.views import service_list_view
 from solutions.views import staff_create_list_view
+from solutions.views import staff_leave_request_list
 from solutions.views import student_create_list_view
+from solutions.views import student_leave_request_list
 from solutions.views import students_attendance
 from solutions.views import write_feedback
 
@@ -53,4 +57,8 @@ urlpatterns = [
     path('staff/students-attendance/', students_attendance, name='staff-students-attendance'),
     path('staff/mark-attendance/<int:obj_id>/', mark_attendance, name='staff-mark-attendance'),
     path('staff/mark-absent/<int:obj_id>/', mark_absent, name='staff-mark-absent'),
+    path('admin/staff-leave-request/list/', staff_leave_request_list, name='staff-leave-request-list'),
+    path('admin/student-leave-request/list/', student_leave_request_list, name='student-leave-request-list'),
+    path('admin/leave-request/<int:obj_id>/approve/', approve_leave_request, name='staff-leave-request-approve'),
+    path('admin/leave-request/<int:obj_id>/reject/', reject_leave_request, name='staff-leave-request-reject'),
 ]
