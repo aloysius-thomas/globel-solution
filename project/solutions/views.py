@@ -2,7 +2,9 @@ import datetime
 from random import randint
 
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import user_passes_test
+from django.http import HttpResponseNotFound
 from django.shortcuts import redirect
 from django.shortcuts import render
 
@@ -12,10 +14,12 @@ from accounts.models import StaffProfile
 from accounts.models import StudentProfile
 from accounts.models import UserRegistration
 from project.email import send_email
+from solutions.forms import CommentForm
 from solutions.forms import LanguageForms
 from solutions.forms import StaffForm
 from solutions.forms import StudentForm
 from solutions.models import ClientRequests
+from solutions.models import Comments
 from solutions.models import Service
 
 
@@ -187,3 +191,25 @@ def service_list_view(request, service):
     title = f'{temp.title()} Service'
     data = Service.objects.filter(service=service)
     return render(request, 'admin/services_list.html', {'title': title, 'data': data})
+
+
+@login_required
+def service_detail_view(request, service_id):
+    try:
+        service = Service.objects.get(id=service_id)
+    except Service.DoesNotExist:
+        return HttpResponseNotFound('<h1>Page not found</h1>')
+    comments = Comments.objects.filter(projects=service)
+    form = CommentForm()
+    return render(request, 'admin/services_details.html', {'service': service, 'comments': comments, 'form': form})
+
+
+@login_required()
+def comment_project_view(request, project_id):
+    form = CommentForm(request.POST or None)
+    if form.is_valid():
+        comment = form.save(commit=False)
+        comment.commented_by = request.user
+        comment.projects_id = project_id
+        comment.save()
+        return redirect('service-details-view', project_id)

@@ -28,7 +28,11 @@
                             <td>{{ item.start_date | date }}</td>
                             <td>{{ item.due_date | date }}</td>
                             <td>{{ item.status }}</td>
-                            <td></td>
+                            <td>
+                                <a href="{% url 'service-details-view'  item.id %}">
+                                    <button class="btn btn-primary">Details</button>
+                                </a>
+                            </td>
                         </tr>
                     {% endfor %}
                     </tbody>

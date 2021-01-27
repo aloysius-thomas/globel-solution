@@ -4,6 +4,7 @@ from accounts.models import phone_regex
 from accounts.models import ProgrammingLanguages
 from accounts.models import UserRegistration
 from solutions.models import ClientRequests
+from solutions.models import Comments
 
 
 class UserForm(forms.ModelForm):
@@ -99,3 +100,12 @@ class LanguageForms(forms.ModelForm):
     class Meta:
         model = ProgrammingLanguages
         fields = '__all__'
+
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comments
+        fields = {'suggestion'}
+        widgets = {
+            'suggestion': forms.Textarea
+        }
