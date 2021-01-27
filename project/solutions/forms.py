@@ -7,6 +7,7 @@ from solutions.models import ClientRequests
 from solutions.models import Comments
 from solutions.models import Feedback
 from solutions.models import JobAllocationRequest
+from solutions.models import Leaves
 
 
 class UserForm(forms.ModelForm):
@@ -131,4 +132,18 @@ class FeedbackForm(forms.ModelForm):
         model = Feedback
         fields = {
             'feedback'
+        }
+
+
+class LeavesForm(forms.ModelForm):
+    leave_type = forms.ChoiceField(choices=(('Sick', 'Sick'), ('Casual', 'Casual')))
+
+    class Meta:
+        model = Leaves
+        fields = {
+            'from_date',
+            'to_date',
+            'reason',
+            'leave_type',
+            'comment',
         }

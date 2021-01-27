@@ -10,6 +10,7 @@ from solutions.views import comment_project_view
 from solutions.views import programing_languages_create_list_view
 from solutions.views import programing_languages_delete_view
 from solutions.views import reject_client_request_view
+from solutions.views import request_leave
 from solutions.views import service_detail_view
 from solutions.views import service_list_view
 from solutions.views import staff_create_list_view
@@ -35,4 +36,5 @@ urlpatterns = [
     path('assign-jobs/', assign_job, name='assign-jobs'),
     path('feedback/', write_feedback, name='feedback'),
     path('student/projects/', student_projects, name='student-projects'),
+    path('request-leave/', request_leave, name='request-leave'),
 ]

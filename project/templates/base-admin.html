@@ -201,14 +201,14 @@
                                     <a class="nav-link" href="{% url 'home' %}">Job Request</a>
                                 </li>
                             {% elif user.is_student %}
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{% url 'home' %}">Profile</a>
-                                </li>
+{#                                <li class="nav-item">#}
+{#                                    <a class="nav-link" href="{% url 'home' %}">Profile</a>#}
+{#                                </li>#}
                                 <li class="nav-item">
                                     <a class="nav-link" href="{% url 'student-projects' %}">My Project</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{% url 'home' %}">Request Leave</a>
+                                    <a class="nav-link" href="{% url 'request-leave' %}">Request Leave</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="{% url 'feedback' %}">Write a Feedback</a>

@@ -18,11 +18,13 @@ from solutions.forms import CommentForm
 from solutions.forms import FeedbackForm
 from solutions.forms import JobAssignForm
 from solutions.forms import LanguageForms
+from solutions.forms import LeavesForm
 from solutions.forms import StaffForm
 from solutions.forms import StudentForm
 from solutions.models import ClientRequests
 from solutions.models import Comments
 from solutions.models import JobAllocationRequest
+from solutions.models import Leaves
 from solutions.models import Service
 
 
@@ -253,3 +255,20 @@ def student_projects(request):
     title = 'My Projects'
     data = Service.objects.filter(client=request.user)
     return render(request, 'admin/services_list.html', {'title': title, 'data': data})
+
+
+@login_required()
+def request_leave(request):
+    title = 'Request Leave'
+    data = Leaves.objects.filter(taken_by=request.user)
+    if request.method == 'POST':
+        form = LeavesForm(request.POST)
+        if form.is_valid():
+            leave = form.save(commit=False)
+            leave.taken_by = request.user
+            leave.save()
+            messages.success(request, 'Success')
+            return redirect('request-leave')
+    else:
+        form = LeavesForm()
+    return render(request, 'admin/leave-create.html', {'form': form, 'title': title, 'list_data': data})
