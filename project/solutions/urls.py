@@ -14,6 +14,7 @@ from solutions.views import service_detail_view
 from solutions.views import service_list_view
 from solutions.views import staff_create_list_view
 from solutions.views import student_create_list_view
+from solutions.views import write_feedback
 
 urlpatterns = [
     path('client-request/success/', client_request_success_view, name='client-request-success'),
@@ -31,4 +32,5 @@ urlpatterns = [
     path('service/<int:service_id>/details/', service_detail_view, name='service-details-view'),
     path('comment/<int:project_id>/', comment_project_view, name='comment-project-view'),
     path('assign-jobs/', assign_job, name='assign-jobs'),
+    path('feedback/', write_feedback, name='feedback'),
 ]

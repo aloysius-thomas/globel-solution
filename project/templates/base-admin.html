@@ -185,7 +185,7 @@
                                     <a class="nav-link" href="{% url 'home' %}">Request a Service</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{% url 'home' %}">Write a Feedback</a>
+                                    <a class="nav-link" href="{% url 'feedback' %}">Write a Feedback</a>
                                 </li>
                             {% elif user.is_staff %}
                                 <li class="nav-item">
@@ -211,7 +211,7 @@
                                     <a class="nav-link" href="{% url 'home' %}">Request Leave</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{% url 'home' %}">Write a Feedback</a>
+                                    <a class="nav-link" href="{% url 'feedback' %}">Write a Feedback</a>
                                 </li>
                             {% endif %}
                         {% endif %}

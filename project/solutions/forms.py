@@ -5,6 +5,7 @@ from accounts.models import ProgrammingLanguages
 from accounts.models import UserRegistration
 from solutions.models import ClientRequests
 from solutions.models import Comments
+from solutions.models import Feedback
 from solutions.models import JobAllocationRequest
 
 
@@ -84,7 +85,7 @@ class StudentForm(UserForm):
         profile = StudentProfile(age=age, college=college, course=course, project_due_date=project_due_date, fees=fees,
                                  user=user)
         profile.save()
-        print(profile, '*'*100)
+        print(profile, '*' * 100)
 
 
 class ClientRequestForm(forms.ModelForm):
@@ -122,4 +123,12 @@ class JobAssignForm(forms.ModelForm):
         fields = {
             'staff',
             'service',
+        }
+
+
+class FeedbackForm(forms.ModelForm):
+    class Meta:
+        model = Feedback
+        fields = {
+            'feedback'
         }

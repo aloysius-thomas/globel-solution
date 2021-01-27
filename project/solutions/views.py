@@ -15,6 +15,7 @@ from accounts.models import StudentProfile
 from accounts.models import UserRegistration
 from project.email import send_email
 from solutions.forms import CommentForm
+from solutions.forms import FeedbackForm
 from solutions.forms import JobAssignForm
 from solutions.forms import LanguageForms
 from solutions.forms import StaffForm
@@ -229,3 +230,19 @@ def assign_job(request):
     else:
         form = JobAssignForm()
     return render(request, 'admin/job_assign_list.html', {'form': form, 'title': title, 'list_data': list_data})
+
+
+@login_required()
+def write_feedback(request):
+    title = 'Write a Feedback'
+    if request.method == 'POST':
+        form = FeedbackForm(request.POST)
+        if form.is_valid():
+            feedback = form.save(commit=False)
+            feedback.user = request.user
+            feedback.save()
+            messages.success(request, 'Success')
+            return redirect('dashboard')
+    else:
+        form = FeedbackForm()
+    return render(request, 'admin/feedback_create.html', {'form': form, 'title': title})
