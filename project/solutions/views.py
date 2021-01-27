@@ -428,3 +428,8 @@ def reject_leave_request(request, obj_id):
         else:
             url = redirect('student-leave-request-list')
         return url
+
+
+@login_required
+def feedback_list(request):
+    pass
