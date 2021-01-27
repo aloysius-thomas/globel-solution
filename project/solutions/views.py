@@ -22,6 +22,7 @@ from solutions.forms import LanguageForms
 from solutions.forms import LeavesForm
 from solutions.forms import StaffForm
 from solutions.forms import StudentForm
+from solutions.models import Attendance
 from solutions.models import ClientRequests
 from solutions.models import Comments
 from solutions.models import JobAllocationRequest
@@ -338,3 +339,44 @@ def my_projects_staff(request):
     title = 'My Projects'
     data = Service.objects.filter(staff=request.user)
     return render(request, 'admin/services_list.html', {'title': title, 'data': data})
+
+
+@login_required()
+def students_attendance(request):
+    today = datetime.datetime.now().date()
+    title = f'Student Attendance of {today}'
+    if not Attendance.objects.filter(date=today).exists():
+        students = UserRegistration.objects.filter(is_student=True)
+        for student in students:
+            Attendance.objects.create(user=student, date=today)
+
+    pending = Attendance.objects.filter(date=today, status='pending')
+    present = Attendance.objects.filter(date=today, status='percent')
+    absent = Attendance.objects.filter(date=today, status='absent')
+
+    return render(request, 'staff/attendance.html',
+                  {'pending': pending, 'title': title, 'present': present, 'absent': absent})
+
+
+@login_required
+def mark_attendance(request, obj_id):
+    try:
+        attendance = Attendance.objects.get(id=obj_id)
+    except Attendance.DoesNotExist:
+        return HttpResponseNotFound('Not Found')
+    else:
+        attendance.status = 'percent'
+        attendance.save()
+        return redirect('staff-students-attendance')
+
+
+@login_required
+def mark_absent(request, obj_id):
+    try:
+        attendance = Attendance.objects.get(id=obj_id)
+    except Attendance.DoesNotExist:
+        return HttpResponseNotFound('Not Found')
+    else:
+        attendance.status = 'absent'
+        attendance.save()
+        return redirect('staff-students-attendance')

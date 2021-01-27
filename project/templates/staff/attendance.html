@@ -1,0 +1,91 @@
+{% extends 'base-admin.html' %}
+{% block title %}
+    {{ title }}
+{% endblock %}
+{% block content %}
+    <h3>{{ title }}</h3>
+    <div class="card">
+        <h5 class="card-header" style="color: blue">Pending</h5>
+        <div class="card-body">
+            {% if pending %}
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col">Student</th>
+                        <th scope="col"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for item in pending %}
+                        <tr>
+                            <td>{{ item.user.get_full_name }}</td>
+                            <td>
+                                <div class="btn-group-sm">
+                                    <a href="{% url 'staff-mark-absent' item.id %}">
+                                        <button class="btn btn-danger">Absent</button>
+                                    </a>
+                                    <a href="{% url 'staff-mark-attendance' item.id %}">
+                                        <button class="btn btn-success">Present</button>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p class="alert alert-info m-1"> No Data</p>
+            {% endif %}
+        </div>
+    </div>
+    <div class="card">
+        <h5 class="card-header" style="color: green">Precent</h5>
+        <div class="card-body">
+            {% if present %}
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col">Student</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for item in present %}
+                        <tr>
+                            <td>{{ item.user.get_full_name }}</td>
+                            <td>{{ item.get_status_display }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p class="alert alert-info m-1"> No Data</p>
+            {% endif %}
+        </div>
+    </div>
+    <div class="card">
+        <h5 class="card-header" style="color: red">Absent</h5>
+        <div class="card-body">
+            {% if absent %}
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col">Student</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for item in absent %}
+                        <tr>
+                            <td>{{ item.user.get_full_name }}</td>
+                            <td>{{ item.get_status_display }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p class="alert alert-info m-1"> No Data</p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

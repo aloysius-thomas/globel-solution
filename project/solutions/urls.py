@@ -9,6 +9,8 @@ from solutions.views import client_request_success_view
 from solutions.views import client_request_view
 from solutions.views import comment_project_view
 from solutions.views import job_allocations_for_staff
+from solutions.views import mark_absent
+from solutions.views import mark_attendance
 from solutions.views import my_projects
 from solutions.views import my_projects_staff
 from solutions.views import programing_languages_create_list_view
@@ -21,6 +23,7 @@ from solutions.views import service_detail_view
 from solutions.views import service_list_view
 from solutions.views import staff_create_list_view
 from solutions.views import student_create_list_view
+from solutions.views import students_attendance
 from solutions.views import write_feedback
 
 urlpatterns = [
@@ -47,4 +50,7 @@ urlpatterns = [
     path('staff/job-requests/accept/', accept_job, name='staff-job-accept'),
     path('staff/job-requests/reject/', reject_job, name='staff-job-reject'),
     path('staff/my-project/', my_projects_staff, name='staff-my-projects'),
+    path('staff/students-attendance/', students_attendance, name='staff-students-attendance'),
+    path('staff/mark-attendance/<int:obj_id>/', mark_attendance, name='staff-mark-attendance'),
+    path('staff/mark-absent/<int:obj_id>/', mark_absent, name='staff-mark-absent'),
 ]
