@@ -93,9 +93,6 @@ class ClientRequestForm(forms.ModelForm):
     class Meta:
         model = ClientRequests
         fields = {
-            'name',
-            'email',
-            'phone_number',
             'message',
             'service',
         }

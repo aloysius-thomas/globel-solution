@@ -14,6 +14,7 @@ from accounts.models import StaffProfile
 from accounts.models import StudentProfile
 from accounts.models import UserRegistration
 from project.email import send_email
+from solutions.forms import ClientRequestForm
 from solutions.forms import CommentForm
 from solutions.forms import FeedbackForm
 from solutions.forms import JobAssignForm
@@ -251,7 +252,7 @@ def write_feedback(request):
 
 
 @login_required()
-def student_projects(request):
+def my_projects(request):
     title = 'My Projects'
     data = Service.objects.filter(client=request.user)
     return render(request, 'admin/services_list.html', {'title': title, 'data': data})
@@ -272,3 +273,22 @@ def request_leave(request):
     else:
         form = LeavesForm()
     return render(request, 'admin/leave-create.html', {'form': form, 'title': title, 'list_data': data})
+
+
+@login_required()
+def request_service(request):
+    title = 'Request Service'
+    if request.method == 'POST':
+        form = ClientRequestForm(request.POST)
+        if form.is_valid():
+            obj = form.save(commit=False)
+            obj.client = request.user
+            obj.name = request.user.first_name
+            obj.email = request.user.email
+            obj.phone_number = request.user.phone_number
+            obj.save()
+            messages.success(request, 'Success')
+            return redirect('my-projects')
+    else:
+        form = ClientRequestForm()
+    return render(request, 'admin/request-service.html', {'form': form, 'title': title})

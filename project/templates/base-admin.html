@@ -179,10 +179,10 @@
                         {% else %}
                             {% if user.is_client %}
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{% url 'home' %}">My Services</a>
+                                    <a class="nav-link" href="{% url 'my-projects' %}">My Services</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{% url 'home' %}">Request a Service</a>
+                                    <a class="nav-link" href="{% url 'request-service' %}">Request a Service</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="{% url 'feedback' %}">Write a Feedback</a>
@@ -195,7 +195,7 @@
                                     <a class="nav-link" href="{% url 'home' %}">Student Attendance</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{% url 'home' %}">Request Leave</a>
+                                    <a class="nav-link" href="{% url 'request-leave}' %}">Request Leave</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="{% url 'home' %}">Job Request</a>
@@ -205,7 +205,7 @@
 {#                                    <a class="nav-link" href="{% url 'home' %}">Profile</a>#}
 {#                                </li>#}
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{% url 'student-projects' %}">My Project</a>
+                                    <a class="nav-link" href="{% url 'my-projects' %}">My Project</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="{% url 'request-leave' %}">Request Leave</a>

@@ -11,11 +11,12 @@ from solutions.views import programing_languages_create_list_view
 from solutions.views import programing_languages_delete_view
 from solutions.views import reject_client_request_view
 from solutions.views import request_leave
+from solutions.views import request_service
 from solutions.views import service_detail_view
 from solutions.views import service_list_view
 from solutions.views import staff_create_list_view
 from solutions.views import student_create_list_view
-from solutions.views import student_projects
+from solutions.views import my_projects
 from solutions.views import write_feedback
 
 urlpatterns = [
@@ -35,6 +36,7 @@ urlpatterns = [
     path('comment/<int:project_id>/', comment_project_view, name='comment-project-view'),
     path('assign-jobs/', assign_job, name='assign-jobs'),
     path('feedback/', write_feedback, name='feedback'),
-    path('student/projects/', student_projects, name='student-projects'),
+    path('my-projects/', my_projects, name='my-projects'),
     path('request-leave/', request_leave, name='request-leave'),
+    path('request-service/', request_service, name='request-service'),
 ]
