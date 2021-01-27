@@ -29,6 +29,9 @@ class Service(models.Model):
     status_updated_on = models.DateField(auto_now=True)
     created = models.DateField(auto_now_add=True)
 
+    def __str__(self):
+        return f'{self.get_service_display()} of {self.client.get_full_name()}'
+
 
 class Comments(models.Model):
     commented_by = models.ForeignKey(UserRegistration, on_delete=models.CASCADE)

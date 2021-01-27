@@ -33,6 +33,9 @@ class UserRegistration(AbstractUser):
 class ProgrammingLanguages(models.Model):
     name = models.CharField(max_length=126)
 
+    def __str__(self):
+        return self.name
+
 
 class StaffProfile(models.Model):
     user = models.OneToOneField(to=UserRegistration, on_delete=models.CASCADE)

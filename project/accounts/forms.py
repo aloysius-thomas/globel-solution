@@ -1,4 +1,5 @@
 from django import forms
+from django.contrib.auth import authenticate
 
 
 class LoginForm(forms.Form):
@@ -11,5 +12,10 @@ class LoginForm(forms.Form):
 
         if not username or not password:
             raise forms.ValidationError("Please enter both fields")
+        user = authenticate(username=username, password=password)
+        if not user:
+            raise forms.ValidationError("invalid credentials")
 
         return super(LoginForm, self).clean()
+
+

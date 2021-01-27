@@ -15,11 +15,13 @@ from accounts.models import StudentProfile
 from accounts.models import UserRegistration
 from project.email import send_email
 from solutions.forms import CommentForm
+from solutions.forms import JobAssignForm
 from solutions.forms import LanguageForms
 from solutions.forms import StaffForm
 from solutions.forms import StudentForm
 from solutions.models import ClientRequests
 from solutions.models import Comments
+from solutions.models import JobAllocationRequest
 from solutions.models import Service
 
 
@@ -213,3 +215,17 @@ def comment_project_view(request, project_id):
         comment.projects_id = project_id
         comment.save()
         return redirect('service-details-view', project_id)
+
+
+@admin_required()
+def assign_job(request):
+    title = 'Assign Jobs'
+    list_data = JobAllocationRequest.objects.all()
+    if request.method == 'POST':
+        form = JobAssignForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('assign-jobs')
+    else:
+        form = JobAssignForm()
+    return render(request, 'admin/job_assign_list.html', {'form': form, 'title': title, 'list_data': list_data})

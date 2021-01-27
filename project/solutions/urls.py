@@ -1,6 +1,7 @@
 from django.urls import path
 
 from solutions.views import approve_client_request_view
+from solutions.views import assign_job
 from solutions.views import client_list_view
 from solutions.views import client_request_list
 from solutions.views import client_request_success_view
@@ -29,4 +30,5 @@ urlpatterns = [
     path('service/<str:service>/', service_list_view, name='service-list-view'),
     path('service/<int:service_id>/details/', service_detail_view, name='service-details-view'),
     path('comment/<int:project_id>/', comment_project_view, name='comment-project-view'),
+    path('assign-jobs/', assign_job, name='assign-jobs'),
 ]

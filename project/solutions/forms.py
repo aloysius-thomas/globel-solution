@@ -5,6 +5,7 @@ from accounts.models import ProgrammingLanguages
 from accounts.models import UserRegistration
 from solutions.models import ClientRequests
 from solutions.models import Comments
+from solutions.models import JobAllocationRequest
 
 
 class UserForm(forms.ModelForm):
@@ -66,9 +67,9 @@ class StaffForm(UserForm):
 class StudentForm(UserForm):
     age = forms.CharField()
     college = forms.CharField()
-    course = forms.CharField()
+    course = forms.ModelChoiceField(queryset=ProgrammingLanguages.objects.all())
     project_due_date = forms.DateField()
-    fees = forms.CharField()
+    fees = forms.IntegerField()
 
     def save_user(self):
         from accounts.models import StudentProfile
@@ -80,8 +81,10 @@ class StudentForm(UserForm):
         course = self.cleaned_data.get('course')
         project_due_date = self.cleaned_data.get('project_due_date')
         fees = self.cleaned_data.get('fees')
-        profile = StudentProfile(age=age, college=college, course=course, project_due_date=project_due_date, fees=fees)
+        profile = StudentProfile(age=age, college=college, course=course, project_due_date=project_due_date, fees=fees,
+                                 user=user)
         profile.save()
+        print(profile, '*'*100)
 
 
 class ClientRequestForm(forms.ModelForm):
@@ -108,4 +111,15 @@ class CommentForm(forms.ModelForm):
         fields = {'suggestion'}
         widgets = {
             'suggestion': forms.Textarea
+        }
+
+
+class JobAssignForm(forms.ModelForm):
+    staff = forms.ModelChoiceField(queryset=UserRegistration.objects.filter(is_staff=True, is_superuser=False))
+
+    class Meta:
+        model = JobAllocationRequest
+        fields = {
+            'staff',
+            'service',
         }
