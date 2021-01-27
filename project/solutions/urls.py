@@ -1,5 +1,6 @@
 from django.urls import path
 
+from solutions.views import approve_client_request_view
 from solutions.views import client_list_view
 from solutions.views import client_request_list
 from solutions.views import client_request_success_view
@@ -14,4 +15,5 @@ urlpatterns = [
     path('users/student/', student_create_list_view, name='student-create-list'),
     path('users/client/', client_list_view, name='client-list'),
     path('client-requests/', client_request_list, name='client-request-list'),
+    path('client-requests/accept/', approve_client_request_view, name='client-request-accept'),
 ]

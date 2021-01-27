@@ -1,3 +1,7 @@
+import datetime
+from random import randint
+
+from django.contrib import messages
 from django.contrib.auth.decorators import user_passes_test
 from django.shortcuts import redirect
 from django.shortcuts import render
@@ -5,9 +9,12 @@ from django.shortcuts import render
 from accounts.models import ClientProfile
 from accounts.models import StaffProfile
 from accounts.models import StudentProfile
+from accounts.models import UserRegistration
+from project.email import send_email
 from solutions.forms import StaffForm
 from solutions.forms import StudentForm
 from solutions.models import ClientRequests
+from solutions.models import Service
 
 
 def admin_required(login_url='login'):
@@ -80,3 +87,48 @@ def client_request_list(request):
         'title': title
     }
     return render(request, 'admin/client_request_list.html', context)
+
+
+@admin_required()
+def approve_client_request_view(request, request_id):
+    try:
+        cq = ClientRequests.objects.get(id=request_id)
+    except ClientRequests.DoesNotExist:
+        messages.error(request, 'not found')
+    else:
+        import random
+        import string
+        if cq.client is None:
+            password = ''.join(random.choices(string.ascii_uppercase +
+                                              string.digits, k=6))
+
+            username = cq.name.replace(" ", "-")
+            while True:
+                if UserRegistration.objects.filter(username=username).exists():
+                    username = username + str(randint(0, 9))
+                else:
+                    break
+            client = UserRegistration(username=username, phone_number=cq.phone_number, address='not provided',
+                                      email=cq.email, first_name=cq.name)
+            client.set_password(password)
+            client.save()
+            profile = ClientProfile.objects.create(user=client, service=cq.service)
+            profile.save()
+            cq.client = client
+            cq.save()
+            message = f"Hi {cq.name},\n your request for {cq.get_service_display()} is approved"
+            f". \nplease login using given credentials \n\n Username: {username}\n Password: {password}"
+        else:
+            message = f"Hi {cq.name},\n your request for {cq.get_service_display()} is approved"
+
+        service = Service.objects.create(service=cq.service, client=cq.client, start_date=datetime.datetime.now())
+        service.save()
+        f". \nplease login using your user name and password"
+        cq.status = 'approved'
+        send_email(
+            subject="Your request is accepted",
+            message=message,
+            recipient_list=[service.client.email, ]
+        )
+        messages.success(request, 'Request accepted and email send')
+        return redirect('client-request-list')
