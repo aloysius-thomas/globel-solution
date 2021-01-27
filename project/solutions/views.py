@@ -292,3 +292,49 @@ def request_service(request):
     else:
         form = ClientRequestForm()
     return render(request, 'admin/request-service.html', {'form': form, 'title': title})
+
+
+@login_required
+def job_allocations_for_staff(request):
+    pending = JobAllocationRequest.objects.filter(status='pending', staff=request.user)
+    approved = JobAllocationRequest.objects.filter(status='approved', staff=request.user)
+    rejected = JobAllocationRequest.objects.filter(status='rejected', staff=request.user)
+    title = 'Job Assignments'
+    context = {
+        'pending': pending,
+        'approved': approved,
+        'rejected': rejected,
+        'title': title
+    }
+    return render(request, 'staff/job-list.html', context)
+
+
+@login_required
+def accept_job(request, job_id):
+    try:
+        job = JobAllocationRequest.objects.get(id=job_id)
+    except JobAllocationRequest.DoesNotExist:
+        return HttpResponseNotFound('Not Found')
+    else:
+        job.status = 'approved'
+        job.save()
+        return redirect('staff-job-requests')
+
+
+@login_required
+def reject_job(request, job_id):
+    try:
+        job = JobAllocationRequest.objects.get(id=job_id)
+    except JobAllocationRequest.DoesNotExist:
+        return HttpResponseNotFound('Not Found')
+    else:
+        job.status = 'rejected'
+        job.save()
+        return redirect('staff-job-requests')
+
+
+@login_required()
+def my_projects_staff(request):
+    title = 'My Projects'
+    data = Service.objects.filter(staff=request.user)
+    return render(request, 'admin/services_list.html', {'title': title, 'data': data})
