@@ -129,8 +129,7 @@ def approve_client_request_view(request, request_id):
             profile.save()
             cq.client = client
             cq.save()
-            message = f"Hi {cq.name},\n your request for {cq.get_service_display()} is approved"
-            f". \nplease login using given credentials \n\n Username: {username}\n Password: {password}"
+            message = f"Hi {cq.name},\n your request for {cq.get_service_display()} is approved. \n please login using given credentials \n\n Username: {username}\n Password: {password}"
         else:
             message = f"Hi {cq.name},\n your request for {cq.get_service_display()} is approved\nplease login using your user name and password"
 
