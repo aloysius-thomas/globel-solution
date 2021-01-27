@@ -1,0 +1,62 @@
+{{% extends 'base-admin.html' %}
+{% load crispy_forms_tags %}
+{% block title %}
+    {{ title }}
+{% endblock %}
+{% block content %}
+    <div class="card">
+        {% if form.non_field_errors %}
+            <div class="alert alert-danger" role="alert">
+                {% for error in form.non_field_errors %}
+                    {{ error }}
+                {% endfor %}
+            </div>
+        {% endif %}
+        <h5 class="card-header">{{ title }}
+            <button class="btn btn-success float-right " type="button" data-toggle="collapse"
+                    data-target="#collapseExample"
+                    aria-expanded="false" aria-controls="collapseExample">
+                New
+            </button>
+        </h5>
+        <div class="collapse" id="collapseExample">
+            <div class="card card-body">
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <div class="form-row">
+                        <div class="form-group col-md-6 mb-0">
+                            {{ form.name|as_crispy_field }}
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+        <div class="card-body">
+            {% if list_data %}
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col">Programming Language (Course)</th>
+                        <th scope="col"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for data in list_data %}
+                        <tr>
+                            <td>{{ data.name }}</td>
+                            <td>
+                                <a href="{% url 'programing-languages-delete-view' data.id %}">
+                                    <button class="btn btn-danger">Delete</button>
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p class="alert alert-info m-1"> No Data</p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

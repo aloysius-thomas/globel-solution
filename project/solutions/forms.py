@@ -1,6 +1,7 @@
 from django import forms
 
 from accounts.models import phone_regex
+from accounts.models import ProgrammingLanguages
 from accounts.models import UserRegistration
 from solutions.models import ClientRequests
 
@@ -92,3 +93,9 @@ class ClientRequestForm(forms.ModelForm):
             'message',
             'service',
         }
+
+
+class LanguageForms(forms.ModelForm):
+    class Meta:
+        model = ProgrammingLanguages
+        fields = '__all__'

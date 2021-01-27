@@ -7,10 +7,12 @@ from django.shortcuts import redirect
 from django.shortcuts import render
 
 from accounts.models import ClientProfile
+from accounts.models import ProgrammingLanguages
 from accounts.models import StaffProfile
 from accounts.models import StudentProfile
 from accounts.models import UserRegistration
 from project.email import send_email
+from solutions.forms import LanguageForms
 from solutions.forms import StaffForm
 from solutions.forms import StudentForm
 from solutions.models import ClientRequests
@@ -149,3 +151,31 @@ def reject_client_request_view(request, request_id):
             recipient_list=[cq.email, ]
         )
         return redirect('client-request-list')
+
+
+@admin_required()
+def programing_languages_create_list_view(request):
+    title = 'Programing Languages (Courses)'
+    list_data = ProgrammingLanguages.objects.all()
+    if request.method == 'POST':
+        form = LanguageForms(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('programing-languages-create-list-view')
+    else:
+        form = LanguageForms()
+    return render(request, 'admin/programming_language_list.html',
+                  {'form': form, 'title': title, 'list_data': list_data})
+
+
+@admin_required()
+def programing_languages_delete_view(request, pl_id):
+    try:
+        pl = ProgrammingLanguages.objects.get(id=pl_id)
+    except ProgrammingLanguages.DoesNotExist:
+        messages.error(request, 'Not found')
+        return redirect('programing-languages-create-list-view')
+    else:
+        pl.delete()
+        messages.success(request, "Deleted")
+        return redirect('programing-languages-create-list-view')
