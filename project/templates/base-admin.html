@@ -117,19 +117,35 @@
                                 <div id="submenu-construction" class="collapse submenu" style="">
                                     <ul class="nav flex-column">
                                         <li class="nav-item">
-                                            <a class="nav-link" href="{% url 'home' %}">Web Design</a>
+                                            <a class="nav-link" href="{% url 'service-list-view' 'web-design' %}">Web
+                                                Design</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="{% url 'home' %}">Web Development</a>
+                                            <a class="nav-link" href="{% url 'service-list-view' 'web-development' %}">Web
+                                                Development</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="{% url 'home' %}">Graphics Designing</a>
+                                            <a class="nav-link" href="{% url 'service-list-view'  'graphic-design' %}">Graphics
+                                                Designing</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="{% url 'home' %}">Advertisement Creation</a>
+                                            <a class="nav-link"
+                                               href="{% url 'service-list-view' 'advertisement-creation' %}">Advertisement
+                                                Creation</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="{% url 'home' %}">Project Support</a>
+                                            <a class="nav-link"
+                                               href="{% url 'service-list-view' 'application-development' %}">Application
+                                                Development</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link"
+                                               href="{% url 'service-list-view' 'digital-marketing' %}">Digital
+                                                Marketing </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{% url 'service-list-view' 'project-support' %}">Project
+                                                Support</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -157,7 +173,8 @@
                                 <a class="nav-link" href="{% url 'home' %}">Assign Job</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'programing-languages-create-list-view' %}">Programing Language</a>
+                                <a class="nav-link" href="{% url 'programing-languages-create-list-view' %}">Programing
+                                    Language</a>
                             </li>
                         {% else %}
                             {% if user.is_client %}

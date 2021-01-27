@@ -179,3 +179,11 @@ def programing_languages_delete_view(request, pl_id):
         pl.delete()
         messages.success(request, "Deleted")
         return redirect('programing-languages-create-list-view')
+
+
+@admin_required()
+def service_list_view(request, service):
+    temp = service.replace("-", " ")
+    title = f'{temp.title()} Service'
+    data = Service.objects.filter(service=service)
+    return render(request, 'admin/services_list.html', {'title': title, 'data': data})

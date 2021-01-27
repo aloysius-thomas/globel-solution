@@ -1,0 +1,42 @@
+{{% extends 'base-admin.html' %}
+{% load crispy_forms_tags %}
+{% block title %}
+    {{ title }}
+{% endblock %}
+{% block content %}
+    <div class="card">
+        <h5 class="card-header">{{ title }}
+        </h5>
+        <div class="card-body">
+            {% if data %}
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th scope="col">Client</th>
+                        <th scope="col">In charge</th>
+                        <th scope="col">Start Date</th>
+                        <th scope="col">Due Date</th>
+                        <th scope="col">Status</th>
+                        <th scope="col"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for item in data %}
+                        <tr>
+                            <td>{{ item.client.get_full_name }}</td>
+                            <td>{{ item.staff.get_full_name }}</td>
+                            <td>{{ item.start_date | date }}</td>
+                            <td>{{ item.due_date | date }}</td>
+                            <td>{{ item.status }}</td>
+                            <td></td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p class="alert alert-info m-1"> No Data</p>
+            {% endif %}
+        </div>
+
+    </div>
+{% endblock %}
