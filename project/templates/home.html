@@ -82,7 +82,7 @@
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <img src="static/publicapp/images/services.svg" class="img-fluid" alt="">
+                        <img src="{% static '/images/services.svg' %}" class="img-fluid" alt="">
                     </div>
                     <div class="col-md-4">
                         <div class="services-2 text-center">
@@ -105,7 +105,7 @@
                 <div class="row no-gutters d-flex">
                     <div class="col-md-6 d-flex">
                         <div class="img d-flex align-self-stretch"
-                             style="background-image:url(static/publicapp/images/about.jpg);"></div>
+                             style="background-image:url('static/images/about.jpg');"></div>
                     </div>
                     <div class="col-md-6 p-3 pl-md-5 py-5 bg-primary">
                         <div class="row justify-content-start pb-3">
@@ -161,56 +161,60 @@
                         <h2 class="mb-4">Our Exclusive <span>Global Solution</span> Services</h2>
                     </div>
                 </div>
-                <div class="row d-flex no-gutters">
-                    <div class="col-md-3 d-flex align-self-stretch ftco-animate"><a href="software">
-                        <div class="media block-6 services d-block">
-                            <div class="line"></div>
-                            <div class="icon"><span class="flaticon-web-programming"></span></div>
-                            <div class="media-body">
-                                <h3 class="heading mb-3">Software Development</h3>
-                                <p> We can establish custom websites, web applications & software on a wide range of
-                                    technology platforms</p>
+                <div>
+                    <div class="row d-flex no-gutters">
+                        <div class="col-md-3 d-flex align-self-stretch ftco-animate">
+                            <div class="media block-6 services d-block">
+                                <div class="line"></div>
+                                <div class="icon"><span class="flaticon-web-programming"></span></div>
+                                <div class="media-body">
+                                    <h3 class="heading mb-3">Software Development</h3>
+                                    <p> We can establish custom websites, web applications & software on a wide range of
+                                        technology platforms</p></div>
                             </div>
-                    </a>
-                    </div>
-                </div>
-                <div class="col-md-3 d-flex align-self-stretch ftco-animate"><a href="digital">
-                    <div class="media block-6 services d-block">
-                        <div class="line"></div>
-                        <div class="icon"><span class="flaticon-stats"></span></div>
-                        <div class="media-body">
-                            <h3 class="heading mb-3">Digital Marketing</h3>
-                            <p>Search Engine Optimization,Content Marketing,Social Media Marketing,Pay Per
-                                Click,Affiliate Marketing</p>
                         </div>
-                </a>
-                </div>
-            </div>
-            <div class="col-md-3 d-flex align-self-stretch ftco-animate"><a href="android">
-                <div class="media block-6 services d-block">
-                    <div class="line"></div>
-                    <div class="icon"><span class="flaticon-secure"></span></div>
-                    <div class="media-body">
-                        <h3 class="heading mb-3">Android/IOS Development</h3>
-                        <p>Operating the services of a top iOS app development company, make your business get better
-                            reach and accessibility. </p>
+                        <div class="col-md-3 d-flex align-self-stretch ftco-animate">
+                            <div class="media block-6 services d-block">
+                                <div class="line"></div>
+                                <div class="icon"><span class="flaticon-web-programming"></span></div>
+                                <div class="media-body">
+                                    <h3 class="heading mb-3">Digital Marketing</h3>
+                                    <p>Search Engine Optimization,Content Marketing,Social Media Marketing,Pay Per
+                                        Click,Affiliate Marketing</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 d-flex align-self-stretch ftco-animate">
+                            <a href="#">
+                                <div class="media block-6 services d-block">
+                                    <div class="line"></div>
+                                    <div class="icon"><span class="flaticon-secure"></span></div>
+                                    <div class="media-body">
+                                        <h3 class="heading mb-3">Android/IOS Development</h3>
+                                        <p>Operating the services of a top iOS app development company, make your
+                                            business
+                                            get
+                                            better
+                                            reach and accessibility. </p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-3 d-flex align-self-stretch ftco-animate">
+                            <div class="media block-6 services d-block">
+                                <div class="line"></div>
+                                <div class="icon"><span class="flaticon-web-programming"></span></div>
+                                <div class="media-body">
+                                    <h3 class="heading mb-3">Project Support</h3>
+                                    <p>We Provide Academic Project Support for BCA,B.TECH(CS), MCA Students</p></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </a>
             </div>
-            <div class="col-md-3 d-flex align-self-stretch ftco-animate"><a href="proindex">
-                <div class="media block-6 services d-block">
-                    <div class="line"></div>
-                    <div class="icon"><span class="flaticon-presentation"></span></div>
-                    <div class="media-body">
-                        <h3 class="heading mb-3">Project Support</h3>
-                    </div>
-                </div>
-            </a>
-                <p>Project Support for BCA,B.TECH(CS),MCA Students</p>
-            </div>
+        </section>
     </div>
-    </section>
+
 
 
     <section class="ftco-section ftco-no-pt">
@@ -224,13 +228,14 @@
                 <div class="col-md-6 col-lg-3 ftco-animate">
                     <div class="project">
                         <div class="img">
-                            <img src="static/publicapp/images/vijitha.png" class="img-fluid" alt="Colorlib Template">
+                            <img src="{% static 'images/vijitha.PNG' %}" class="img-fluid"
+                                 alt="Colorlib Template">
                         </div>
                         <div class="text text-center">
                             <span>Web Development</span>
-                            <h3><a href="project.html">Python Developer</a></h3>
+                            <h3><a href="#">Python Developer</a></h3>
                         </div>
-                        <a href="static/publicapp/images/vijitha.png"
+                        <a href="#"
                            class="icon image-popup d-flex justify-content-center align-items-center">
                             <span class="fa fa-expand"></span>
                         </a>
@@ -239,13 +244,13 @@
                 <div class="col-md-6 col-lg-3 ftco-animate">
                     <div class="project">
                         <div class="img">
-                            <img src="static/publicapp/images/anju.png" class="img-fluid" alt="Colorlib Template">
+                            <img src="{% static 'images/anju.PNG' %}" class="img-fluid" alt="Colorlib Template">
                         </div>
                         <div class="text text-center">
                             <span>Web Application</span>
-                            <h3><a href="project.html">Creative Idea Build Up</a></h3>
+                            <h3><a href="#">Creative Idea Build Up</a></h3>
                         </div>
-                        <a href="static/publicapp/images/anju.png"
+                        <a href="{% static 'images/anju.PNG' %}"
                            class="icon image-popup d-flex justify-content-center align-items-center">
                             <span class="fa fa-expand"></span>
                         </a>
@@ -254,13 +259,13 @@
                 <div class="col-md-6 col-lg-3 ftco-animate">
                     <div class="project">
                         <div class="img">
-                            <img src="static/publicapp/images/charles.png" class="img-fluid" alt="Colorlib Template">
+                            <img src="{% static 'images/charles.PNG' %}" class="img-fluid" alt="Colorlib Template">
                         </div>
                         <div class="text text-center">
                             <span>Web Development</span>
-                            <h3><a href="project.html">Web Design Concept &amp; Web Analysis</a></h3>
+                            <h3><a href="#">Web Design Concept &amp; Web Analysis</a></h3>
                         </div>
-                        <a href="static/publicapp/images/charles.png"
+                        <a href="{% static 'images/charles.PNG' %}"
                            class="icon image-popup d-flex justify-content-center align-items-center">
                             <span class="fa fa-expand"></span>
                         </a>
@@ -269,13 +274,13 @@
                 <div class="col-md-6 col-lg-3 ftco-animate">
                     <div class="project">
                         <div class="img">
-                            <img src="static/publicapp/images/abhijith.png" class="img-fluid" alt="Colorlib Template">
+                            <img src="{% static 'images/abhijith.PNG' %}" class="img-fluid" alt="Colorlib Template">
                         </div>
                         <div class="text text-center">
                             <span>UI/UX Strategy</span>
-                            <h3><a href="project.html">Strategy for Enduring Customer Relationships</a></h3>
+                            <h3><a href="#">Strategy for Enduring Customer Relationships</a></h3>
                         </div>
-                        <a href="static/publicapp/images/abhijith.png"
+                        <a href="{% static 'images/abhijith.PNG' %}"
                            class="icon image-popup d-flex justify-content-center align-items-center">
                             <span class="fa fa-expand"></span>
                         </a>
@@ -298,13 +303,13 @@
                 <div class="col-md-6 col-lg-3 ftco-animate">
                     <div class="project">
                         <div class="img">
-                            <img src="static/publicapp/images/work-1.jpg" class="img-fluid" alt="Colorlib Template">
+                            <img src="{% static 'images/work-1.jpg' %}" class="img-fluid" alt="Colorlib Template">
                         </div>
                         <div class="text text-center">
                             <span>Web Development</span>
-                            <h3><a href="project.html">Best Solution for Information Technology</a></h3>
+                            <h3><a href="#">Best Solution for Information Technology</a></h3>
                         </div>
-                        <a href="static/publicapp/images/work-1.jpg"
+                        <a href="{% static 'images/work-1.jpg' %}"
                            class="icon image-popup d-flex justify-content-center align-items-center">
                             <span class="fa fa-expand"></span>
                         </a>
@@ -313,13 +318,13 @@
                 <div class="col-md-6 col-lg-3 ftco-animate">
                     <div class="project">
                         <div class="img">
-                            <img src="static/publicapp/images/work-2.jpg" class="img-fluid" alt="Colorlib Template">
+                            <img src="{% static 'images/work-2.jpg' %}" class="img-fluid" alt="Colorlib Template">
                         </div>
                         <div class="text text-center">
                             <span>Web Application</span>
-                            <h3><a href="project.html">Creative Idea Build Up</a></h3>
+                            <h3><a href="#">Creative Idea Build Up</a></h3>
                         </div>
-                        <a href="static/publicapp/images/work-2.jpg"
+                        <a href="{% static 'images/work-2.jpg' %}"
                            class="icon image-popup d-flex justify-content-center align-items-center">
                             <span class="fa fa-expand"></span>
                         </a>
@@ -328,13 +333,13 @@
                 <div class="col-md-6 col-lg-3 ftco-animate">
                     <div class="project">
                         <div class="img">
-                            <img src="static/publicapp/images/work-3.jpg" class="img-fluid" alt="Colorlib Template">
+                            <img src="{% static 'images/work-3.jpg' %}" class="img-fluid" alt="Colorlib Template">
                         </div>
                         <div class="text text-center">
                             <span>Web Development</span>
-                            <h3><a href="project.html">Web Design Concept &amp; Web Analysis</a></h3>
+                            <h3><a href="#">Web Design Concept &amp; Web Analysis</a></h3>
                         </div>
-                        <a href="static/publicapp/images/work-3.jpg"
+                        <a href="{% static 'images/work-3.jpg' %}"
                            class="icon image-popup d-flex justify-content-center align-items-center">
                             <span class="fa fa-expand"></span>
                         </a>
@@ -343,13 +348,13 @@
                 <div class="col-md-6 col-lg-3 ftco-animate">
                     <div class="project">
                         <div class="img">
-                            <img src="static/publicapp/images/work-4.jpg" class="img-fluid" alt="Colorlib Template">
+                            <img src="{% static 'images/work-4.jpg' %}" class="img-fluid" alt="Colorlib Template">
                         </div>
                         <div class="text text-center">
                             <span>UI/UX Strategy</span>
-                            <h3><a href="project.html">Strategy for Enduring Customer Relationships</a></h3>
+                            <h3><a href="#">Strategy for Enduring Customer Relationships</a></h3>
                         </div>
-                        <a href="static/publicapp/images/work-4.jpg"
+                        <a href="{% static 'images/work-4.jpg' %}"
                            class="icon image-popup d-flex justify-content-center align-items-center">
                             <span class="fa fa-expand"></span>
                         </a>
@@ -371,10 +376,10 @@
                 <div class="col-md-6 col-lg-3 ftco-animate">
                     <div class="project">
                         <div class="img">
-                            <img src="static/publicapp/images/kalyan.jpg" class="img-fluid" alt="Colorlib Template">
+                            <img src="{% static 'images/kalyan.gif' %}" class="img-fluid" alt="Colorlib Template">
                         </div>
 
-                        <a href="static/publicapp/images/kalyan.jpg"
+                        <a href="{% static 'images/kalyan.gif' %}"
                            class="icon image-popup d-flex justify-content-center align-items-center">
                             <span class="fa fa-expand"></span>
                         </a>
@@ -383,10 +388,10 @@
                 <div class="col-md-6 col-lg-3 ftco-animate">
                     <div class="project">
                         <div class="img">
-                            <img src="static/publicapp/images/kanakas1.jpg" class="img-fluid" alt="Colorlib Template">
+                            <img src="{% static 'images/kanakas1.jpg' %}" class="img-fluid" alt="Colorlib Template">
                         </div>
 
-                        <a href="static/publicapp/images/kanakas1.jpg"
+                        <a href="{% static 'images/kanakas1.jpg' %}"
                            class="icon image-popup d-flex justify-content-center align-items-center">
                             <span class="fa fa-expand"></span>
                         </a>
@@ -395,10 +400,10 @@
                 <div class="col-md-6 col-lg-3 ftco-animate">
                     <div class="project">
                         <div class="img">
-                            <img src="static/publicapp/images/ownleads.jpg" class="img-fluid" alt="Colorlib Template">
+                            <img src="{% static 'images/pic8.jpg' %}" class="img-fluid" alt="Colorlib Template">
                         </div>
 
-                        <a href="static/publicapp/images/ownleads.jpg"
+                        <a href="{% static 'images/pic8.jpg' %}"
                            class="icon image-popup d-flex justify-content-center align-items-center">
                             <span class="fa fa-expand"></span>
                         </a>
@@ -407,10 +412,10 @@
                 <div class="col-md-6 col-lg-3 ftco-animate">
                     <div class="project">
                         <div class="img">
-                            <img src="static/publicapp/images/pic8.jpg" class="img-fluid" alt="Colorlib Template">
+                            <img src="{% static 'images/pic6.jpg' %}" class="img-fluid" alt="Colorlib Template">
                         </div>
 
-                        <a href="static/publicapp/images/pic8.jpg"
+                        <a href="{% static 'images/pic6.jpg' %}"
                            class="icon image-popup d-flex justify-content-center align-items-center">
                             <span class="fa fa-expand"></span>
                         </a>
@@ -419,22 +424,10 @@
                 <div class="col-md-6 col-lg-3 ftco-animate">
                     <div class="project">
                         <div class="img">
-                            <img src="static/publicapp/images/pic6.jpg" class="img-fluid" alt="Colorlib Template">
+                            <img src="{% static 'images/pic7.jpg' %}" class="img-fluid" alt="Colorlib Template">
                         </div>
 
-                        <a href="static/publicapp/images/pic6.jpg"
-                           class="icon image-popup d-flex justify-content-center align-items-center">
-                            <span class="fa fa-expand"></span>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3 ftco-animate">
-                    <div class="project">
-                        <div class="img">
-                            <img src="static/publicapp/images/pic7.jpg" class="img-fluid" alt="Colorlib Template">
-                        </div>
-
-                        <a href="static/publicapp/images/pic7.jpg"
+                        <a href="{% static 'images/pic7.jpg' %}"
                            class="icon image-popup d-flex justify-content-center align-items-center">
                             <span class="fa fa-expand"></span>
                         </a>
@@ -449,13 +442,13 @@
             <div class="row">
                 <div class="col-lg-6 order-md-last">
                     <div class="img img-video d-flex align-self-stretch align-items-center justify-content-center justify-content-md-center mb-4 mb-sm-0"
-                         style="background-image:url(static/publicapp/images/about.jpg);">
+                         style="background-image:url(static/images/about.jpg);">
                     </div>
                     <div class="d-flex mt-3">
                         <div class="img img-2 mr-md-2 w-100"
-                             style="background-image:url(static/publicapp/images/about-1.jpg);"></div>
+                             style="background-image:url(static/images/about-1.jpg);"></div>
                         <div class="img img-2 ml-md-2 w-100"
-                             style="background-image:url(static/publicapp/images/about-2.jpg);"></div>
+                             style="background-image:url(static/images/about-2.jpg);"></div>
                     </div>
                 </div>
 
@@ -559,7 +552,7 @@
 
 
     <section class="ftco-section ftco-no-pb testimony-section"
-             style="background-image: url(static/publicapp/images/about.jpg);">
+             style="background-image: url(static/images/about.jpg);">
         <div class="overlay-1"></div>
         <div class="container-fluid">
             <div class="row justify-content-center mb-5 pb-3">
@@ -572,7 +565,7 @@
                     <div class="carousel-testimony owl-carousel ftco-owl">
                         <div class="item">
                             <div class="testimony-wrap d-flex align-items-stretch"
-                                 style="background-image: url(static/publicapp/images/testimony-1.jpg);">
+                                 style="background-image: url(static/images/testimony-1.jpg);">
                                 <div class="overlay"></div>
                                 <div class="text">
                                     <div class="line"></div>
@@ -586,7 +579,7 @@
                         </div>
                         <div class="item">
                             <div class="testimony-wrap d-flex align-items-stretch"
-                                 style="background-image: url(static/publicapp/images/testimony-2.jpg);">
+                                 style="background-image: url(static/images/testimony-2.jpg);">
                                 <div class="overlay"></div>
                                 <div class="text">
                                     <div class="line"></div>
@@ -599,7 +592,7 @@
                         </div>
                         <div class="item">
                             <div class="testimony-wrap d-flex align-items-stretch"
-                                 style="background-image: url(static/publicapp/images/testimony-3.jpg);">
+                                 style="background-image: url(static/images/testimony-3.jpg);">
                                 <div class="overlay"></div>
                                 <div class="text">
                                     <div class="line"></div>
@@ -612,7 +605,7 @@
                         </div>
                         <div class="item">
                             <div class="testimony-wrap d-flex align-items-stretch"
-                                 style="background-image: url(static/publicapp/images/testimony-4.jpg);">
+                                 style="background-image: url(static/images/testimony-4.jpg);">
                                 <div class="overlay"></div>
                                 <div class="text">
                                     <div class="line"></div>
@@ -625,7 +618,7 @@
                         </div>
                         <div class="item">
                             <div class="testimony-wrap d-flex align-items-stretch"
-                                 style="background-image: url(static/publicapp/images/testimony-5.jpg);">
+                                 style="background-image: url(static/images/testimony-5.jpg);">
                                 <div class="overlay"></div>
                                 <div class="text">
                                     <div class="line"></div>
