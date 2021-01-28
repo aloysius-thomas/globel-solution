@@ -19,6 +19,7 @@ from django.contrib import admin
 from django.urls import include
 from django.urls import path
 
+from accounts.views import about
 from accounts.views import dashboard
 from accounts.views import home
 from accounts.views import login_view
@@ -30,6 +31,7 @@ urlpatterns = [
     path('dashboard/', dashboard, name='dashboard'),
     path('login/', login_view, name='login'),
     path('logout/', logout_view, name='logout'),
+    path('about/', about, name='about'),
     path('dashboard/', include('solutions.urls')),
 ]
 
