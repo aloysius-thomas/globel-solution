@@ -25,6 +25,7 @@ from solutions.forms import StudentForm
 from solutions.models import Attendance
 from solutions.models import ClientRequests
 from solutions.models import Comments
+from solutions.models import Feedback
 from solutions.models import JobAllocationRequest
 from solutions.models import Leaves
 from solutions.models import Service
@@ -430,5 +431,5 @@ def reject_leave_request(request, obj_id):
 
 
 @login_required
-def feedback_list(request):
-    pass
+def feedback_list(request, user):
+    feedback_list = Feedback.objects.filter(user.is_)
