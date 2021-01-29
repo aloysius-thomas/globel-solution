@@ -245,7 +245,7 @@ def comment_project_view(request, project_id):
 @admin_required()
 def assign_job(request):
     title = 'Assign Jobs'
-    list_data = JobAllocationRequest.objects.all()
+    list_data = JobAllocationRequest.objects.all().order_by('-id')
     if request.method == 'POST':
         form = JobAssignForm(request.POST)
         if form.is_valid():

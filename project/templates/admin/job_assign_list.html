@@ -37,7 +37,7 @@
         </div>
         <div class="card-body">
             {% if list_data %}
-                <table class="table table-hover">
+                <table class="table table-hover" id="data-table">
                     <thead>
                     <tr>
                         <th scope="col">Staff</th>
@@ -60,4 +60,11 @@
             {% endif %}
         </div>
     </div>
+    {% block extra-js %}
+        <script>
+            $(document).ready(function () {
+                $('#data-table').DataTable();
+            });
+        </script>
+    {% endblock %}
 {% endblock %}
