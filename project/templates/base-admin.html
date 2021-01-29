@@ -45,7 +45,17 @@
                              aria-labelledby="navbarDropdownMenuLink2">
                             <div class="nav-user-info">
                                 <h5 class="mb-0 text-white nav-user-name">
-                                    Hi! {{ user }}</h5>
+                                    Hi! {{ user }}
+                                    {% if user.is_superuser %}
+                                        - (Admin)
+                                    {% elif user.is_staff %}
+                                        - (Staff)
+                                    {% elif user.is_student %}
+                                        - (Student)
+                                    {% else %}
+
+                                    {% endif %}
+                                </h5>
                             </div>
                             <a class="dropdown-item" href="{% url 'logout' %}"><i
                                     class="fas fa-power-off mr-2"></i>Logout</a>
@@ -155,21 +165,8 @@
                                     </ul>
                                 </div>
                             </li>
-                            <li class="nav-item ">
-                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false"
-                                   data-target="#submenu-tour" aria-controls="submenu-1">
-                                    <b>Feedback</b>
-                                    <span class="badge badge-success">6</span></a>
-                                <div id="submenu-tour" class="collapse submenu" style="">
-                                    <ul class="nav flex-column">
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="{% url 'home' %}">Client</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="{% url 'home' %}">Student</a>
-                                        </li>
-                                    </ul>
-                                </div>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'feedback-list' %}">Feedback</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{% url 'client-request-list' %}">Client Requests</a>

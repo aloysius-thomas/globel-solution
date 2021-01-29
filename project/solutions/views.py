@@ -191,6 +191,7 @@ def programing_languages_create_list_view(request):
         form = LanguageForms(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request, "Successfully added")
             return redirect('programing-languages-create-list-view')
     else:
         form = LanguageForms()
@@ -207,7 +208,7 @@ def programing_languages_delete_view(request, pl_id):
         return redirect('programing-languages-create-list-view')
     else:
         pl.delete()
-        messages.success(request, "Deleted")
+        messages.error(request, "Deleted")
         return redirect('programing-languages-create-list-view')
 
 
@@ -457,5 +458,7 @@ def reject_leave_request(request, obj_id):
 
 
 @login_required
-def feedback_list(request, user):
-    feedback_list = Feedback.objects.filter(user.is_)
+def feedback_list_view(request):
+    feedback_list = Feedback.objects.all().order_by('-id')
+    context = {'title': 'Feedback', 'feedback_list': feedback_list}
+    return render(request, 'admin/feedback_list.html', context)

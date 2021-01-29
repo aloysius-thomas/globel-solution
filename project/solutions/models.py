@@ -76,3 +76,4 @@ class JobAllocationRequest(models.Model):
 class Feedback(models.Model):
     user = models.ForeignKey(to=UserRegistration, on_delete=models.CASCADE)
     feedback = models.TextField()
+    added_on = models.DateField(auto_now_add=True, blank=True, null=True)

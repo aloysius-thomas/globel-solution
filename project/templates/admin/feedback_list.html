@@ -1,0 +1,29 @@
+{% extends 'base-admin.html' %}
+{% block content %}
+    <h3>{{ title }}</h3>
+    {% if feedback_list %}
+        {% for feedback in feedback_list %}
+
+            <div class="card card-body">
+                <div class="review-block ">
+                    <p class="review-text font-italic m-0">“{{ feedback.feedback }}”</p>
+                    <div class="rating-star mb-4">
+                    </div>
+                    <span class="text-dark font-weight-bold">{{ feedback.user }}</span><small
+                        class="text-mute">
+                    {% if feedback.user.is_client %}
+                        (Client)
+                    {% elif feedback.user.is_student %}
+                        (Student)
+                    {% else %}
+                    {% endif %} </small>
+                </div>
+            </div>
+        {% endfor %}
+
+    {% else %}
+        <p class="p-4 alert alert-info"> No Feedback Yet</p>
+    {% endif %}
+
+
+{% endblock %}

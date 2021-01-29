@@ -9,6 +9,7 @@ from solutions.views import client_request_list
 from solutions.views import client_request_success_view
 from solutions.views import client_request_view
 from solutions.views import comment_project_view
+from solutions.views import feedback_list_view
 from solutions.views import job_allocations_for_staff
 from solutions.views import mark_absent
 from solutions.views import mark_attendance
@@ -61,4 +62,5 @@ urlpatterns = [
     path('admin/student-leave-request/list/', student_leave_request_list, name='student-leave-request-list'),
     path('admin/leave-request/<int:obj_id>/approve/', approve_leave_request, name='staff-leave-request-approve'),
     path('admin/leave-request/<int:obj_id>/reject/', reject_leave_request, name='staff-leave-request-reject'),
+    path('admin/feedback/', feedback_list_view, name='feedback-list'),
 ]
