@@ -250,6 +250,7 @@ def assign_job(request):
         form = JobAssignForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request, "Job added successfully")
             return redirect('assign-jobs')
     else:
         form = JobAssignForm()
