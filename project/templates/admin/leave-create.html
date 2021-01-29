@@ -72,4 +72,16 @@
             {% endif %}
         </div>
     </div>
+    {% block extra-js %}
+        <script>
+            $(function () {
+                $("#id_from_date").datepicker({
+                    format: 'dd/mm/yyyy',
+                });
+                $("#id_to_date").datepicker({
+                    format: 'dd/mm/yyyy',
+                });
+            });
+        </script>
+    {% endblock %}
 {% endblock %}

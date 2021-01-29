@@ -372,11 +372,10 @@ def students_attendance(request):
             Attendance.objects.create(user=student, date=today)
 
     pending = Attendance.objects.filter(date=today, status='pending')
-    present = Attendance.objects.filter(date=today, status='percent')
-    absent = Attendance.objects.filter(date=today, status='absent')
+    attendance = Attendance.objects.filter(date=today, status__in=['percent', 'absent'])
 
     return render(request, 'staff/attendance.html',
-                  {'pending': pending, 'title': title, 'present': present, 'absent': absent})
+                  {'pending': pending, 'title': title, 'attendance': attendance, })
 
 
 @login_required

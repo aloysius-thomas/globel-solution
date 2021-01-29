@@ -74,7 +74,7 @@ class StudentForm(UserForm):
     age = forms.CharField()
     college = forms.CharField()
     course = forms.ModelChoiceField(queryset=ProgrammingLanguages.objects.all())
-    project_due_date = forms.DateField()
+    project_due_date = forms.DateTimeField(input_formats=['%d/%m/%Y'])
     fees = forms.IntegerField()
 
     def save_user(self):
@@ -138,6 +138,8 @@ class FeedbackForm(forms.ModelForm):
 
 class LeavesForm(forms.ModelForm):
     leave_type = forms.ChoiceField(choices=(('Sick', 'Sick'), ('Casual', 'Casual')))
+    from_date = forms.DateTimeField(input_formats=['%d/%m/%Y'])
+    to_date = forms.DateTimeField(input_formats=['%d/%m/%Y'])
 
     class Meta:
         model = Leaves
