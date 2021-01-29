@@ -126,7 +126,7 @@ def approve_client_request_view(request, request_id):
     try:
         cq = ClientRequests.objects.get(id=request_id)
     except ClientRequests.DoesNotExist:
-        messages.error(request, 'not found')
+        return HttpResponseNotFound()
     else:
         import random
         import string
@@ -440,7 +440,7 @@ def reject_leave_request(request, obj_id):
     else:
         leave.status = 'rejected'
         leave.save()
-        messages.success(request, 'Leave Rejected')
+        messages.error(request, 'Leave Rejected')
         if leave.taken_by.is_staff:
             url = redirect('staff-leave-request-list')
         else:

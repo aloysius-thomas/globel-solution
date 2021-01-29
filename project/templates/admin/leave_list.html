@@ -3,6 +3,7 @@
     {{ title }}
 {% endblock %}
 {% block content %}
+    {% include 'message.html' %}
     <h3>{{ title }}</h3>
     <div class="card">
         <h5 class="card-header" style="color: blue">Pending</h5>
@@ -27,10 +28,10 @@
                             <td>{{ data.get_status_display }}</td>
                             <td>
                                 <div class="btn-group-sm">
-                                    <a href="{% url 'staff-leave-request-approve' data.id %}">
+                                    <a href="{% url 'staff-leave-request-reject' data.id %}">
                                         <button class="btn btn-danger">Reject</button>
                                     </a>
-                                    <a href="{% url 'staff-leave-request-reject' data.id %}">
+                                    <a href="{% url 'staff-leave-request-approve' data.id %}">
                                         <button class="btn btn-success">Approve</button>
                                     </a>
                                 </div>
