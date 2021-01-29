@@ -42,7 +42,17 @@ def staff_create_list_view(request):
     if request.method == 'POST':
         form = StaffForm(request.POST)
         if form.is_valid():
-            form.save_user()
+            password = form.cleaned_data.get('password')
+            first_name = form.cleaned_data.get('first_name')
+            last_name = form.cleaned_data.get('last_name')
+            username = form.cleaned_data.get('username')
+            user = form.save_user()
+            messages.success(request, 'Staff account created successfully')
+            send_email(
+                subject="Your Account is created",
+                message=f"Hi {first_name} {last_name}\n Yor staff account is created. Please login using given credentials\n Username: {username}\n Password: {password} ",
+                recipient_list=[user.email, ]
+            )
             return redirect('staff-create-list')
     else:
         form = StaffForm()
@@ -56,7 +66,15 @@ def student_create_list_view(request):
     if request.method == 'POST':
         form = StudentForm(request.POST)
         if form.is_valid():
-            form.save_user()
+            password = form.cleaned_data.get('password')
+            username = form.cleaned_data.get('username')
+            user = form.save_user()
+            messages.success(request, 'Student account created successfully')
+            send_email(
+                subject="Your Account is created",
+                message=f"Hi Student \n Yor account is created. Please login using given credentials\n Username: {username}\n Password: {password} ",
+                recipient_list=[user.email, ]
+            )
             return redirect('student-create-list')
     else:
         form = StudentForm()

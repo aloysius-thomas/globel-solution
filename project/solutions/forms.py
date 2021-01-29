@@ -19,6 +19,7 @@ class UserForm(forms.ModelForm):
             'last_name',
             'address',
             'phone_number',
+            'email'
         }
 
     username = forms.CharField()
@@ -27,6 +28,7 @@ class UserForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())
     address = forms.TextInput()
     phone_number = forms.CharField(validators=[phone_regex])
+    email = forms.EmailField()
 
 
 def get_user_instance(data):
@@ -36,9 +38,10 @@ def get_user_instance(data):
     password = data.get('password')
     address = data.get('address')
     phone_number = data.get('phone_number')
+    email = data.get('email')
 
     user = UserRegistration(username=username, first_name=first_name, last_name=last_name,
-                            address=address, phone_number=phone_number)
+                            address=address, phone_number=phone_number, email=email)
     user.set_password(password)
     user.save()
     return user
@@ -87,6 +90,7 @@ class StudentForm(UserForm):
                                  user=user)
         profile.save()
         print(profile, '*' * 100)
+        return user
 
 
 class ClientRequestForm(forms.ModelForm):
