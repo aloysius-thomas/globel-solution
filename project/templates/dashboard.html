@@ -78,38 +78,29 @@
                             <table class="table">
                                 <thead class="bg-light">
                                 <tr class="border-0">
-                                    <th class="border-0">Project Title</th>
                                     <th class="border-0">Type of Project</th>
                                     <th class="border-0">Project Status</th>
                                     <th class="border-0">Start Date</th>
                                     <th class="border-0">Due Date</th>
-                                    <th class="border-0">Remarks</th>
                                 </tr>
                                 </thead>
-                                {% for i in alladprostsdata %}
+                                <tbody>
+                                {% for project in projects %}
                                     <tr>
                                         <td>
-                                            {{ i.project_title }}
+                                            {{ project.get_service_display }}
                                         </td>
                                         <td>
-                                            {{ i.type_of_proj }}
+                                            {{ project.status }}
                                         </td>
                                         <td>
-                                            {{ i.proj_sts }}
+                                            {{ project.start_date }}
                                         </td>
                                         <td>
-                                            {{ i.start_date }}
-                                        </td>
-                                        <td>
-                                            {{ i.proj_duedate }}
-                                        </td>
-                                        <td>
-                                            {{ i.remarks }}
+                                            {{ project.due_date }}
                                         </td>
                                     </tr>
                                 {% endfor %}
-
-
                                 </tbody>
                             </table>
                         </div>
@@ -128,7 +119,7 @@
                 <div class="card">
                     <h5 class="card-header">Project On Time</h5>
                     <div class="card-body">
-                        <div class="ct-chart ct-golden-section" style="height: 354px;"></div>
+                        <div class="ct-chart ct-golden-section" style="height: 300px;"></div>
                         <div class="text-center">
                                             <span class="legend-item mr-2">
                                                     <span class="fa-xs text-primary mr-1 legend-tile"><i
@@ -149,35 +140,6 @@
             <!-- end customer acquistion  -->
             <!-- ============================================================== -->
         </div>
-        <div class="row">
-
-            <div class="col-xl-3 col-lg-12 col-md-6 col-sm-12 col-12">
-                <!-- ============================================================== -->
-                <!-- top perfomimg  -->
-                <!-- ============================================================== -->
-                <div class="card">
-                    <h5 class="card-header">Top Performing Staffs</h5>
-                    <div class="card-body p-0">
-                        <div class="table-responsive">
-                            <table class="table no-wrap p-table">
-                                <thead class="bg-light">
-                                <tr class="border-0">
-                                    <th class="border-0">Name</th>
-                                    <th class="border-0">Works</th>
-                                    <th class="border-0">Revenue</th>
-                                </tr>
-                                </thead>
-
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <!-- ============================================================== -->
-                <!-- end top perfomimg  -->
-                <!-- ============================================================== -->
-            </div>
-        </div>
-
         <div class="row">
             <!-- ============================================================== -->
             <!-- sales  -->

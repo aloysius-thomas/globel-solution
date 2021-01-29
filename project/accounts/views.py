@@ -7,6 +7,7 @@ from django.shortcuts import render
 
 from accounts.forms import LoginForm
 from solutions.forms import ClientRequestForm
+from solutions.models import Service
 
 
 def home(request):
@@ -15,7 +16,8 @@ def home(request):
 
 @login_required
 def dashboard(request):
-    return render(request, 'dashboard.html', {})
+    projects = Service.objects.all().order_by('-id')[:5]
+    return render(request, 'dashboard.html', {'projects': projects})
 
 
 def about(request):
