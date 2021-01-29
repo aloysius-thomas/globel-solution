@@ -9,13 +9,12 @@
         <h5 class="card-header" style="color: blue">Pending</h5>
         <div class="card-body">
             {% if list_data %}
-                <table class="table table-hover">
+                <table class="table table-hover" id="data-table">
                     <thead>
                     <tr>
                         <th scope="col">Name</th>
                         <th scope="col">Date</th>
                         <th scope="col">Reason</th>
-                        <th scope="col">Status</th>
                         <th scope="col"></th>
                     </tr>
                     </thead>
@@ -25,7 +24,6 @@
                             <td>{{ data.taken_by.get_full_name }}</td>
                             <td>{{ data.from_date | date }} to {{ data.to_date |date }}</td>
                             <td>{{ data.reason }}</td>
-                            <td>{{ data.get_status_display }}</td>
                             <td>
                                 <div class="btn-group-sm">
                                     <a href="{% url 'staff-leave-request-reject' data.id %}">
@@ -45,4 +43,73 @@
             {% endif %}
         </div>
     </div>
+
+    <div class="card">
+        <h5 class="card-header" style="color: green">Approved</h5>
+        <div class="card-body">
+            {% if approved %}
+                <table class="table table-hover" id="approved">
+                    <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Reason</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for data in approved %}
+                        <tr>
+                            <td>{{ data.taken_by.get_full_name }}</td>
+                            <td>{{ data.from_date | date }} to {{ data.to_date |date }}</td>
+                            <td>{{ data.reason }}</td>
+                            <td>{{ data.get_status_display }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p class="alert alert-info m-1"> No Data</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="card">
+        <h5 class="card-header" style="color: red">Rejected</h5>
+        <div class="card-body">
+            {% if rejected %}
+                <table class="table table-hover" id="rejected">
+                    <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Reason</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for data in rejected %}
+                        <tr>
+                            <td>{{ data.taken_by.get_full_name }}</td>
+                            <td>{{ data.from_date | date }} to {{ data.to_date |date }}</td>
+                            <td>{{ data.reason }}</td>
+                            <td>{{ data.get_status_display }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p class="alert alert-info m-1"> No Data</p>
+            {% endif %}
+        </div>
+    </div>
+    {% block extra-js %}
+        <script>
+            $(document).ready(function () {
+                $('#data-table').DataTable();
+                $('#approved').DataTable();
+                $('#rejected').DataTable();
+            });
+        </script>
+    {% endblock %}
 {% endblock %}

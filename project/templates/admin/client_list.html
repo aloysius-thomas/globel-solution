@@ -4,20 +4,19 @@
     {{ title }}
 {% endblock %}
 {% block content %}
-    <div class="card">
+    <div class="">
 
-        <h5 class="card-header">{{ title }}
-        </h5>
-        <div class="card-body">
+        <div class="card-header"><b>{{ title }}</b></div>
+        <div class="card card-body">
             {% if list_data %}
-                <table class="table table-hover">
+                <table class="table table-hover" id="client-table">
                     <thead>
                     <tr>
                         <th scope="col">Username</th>
                         <th scope="col">Name</th>
                         <th scope="col">Phone</th>
                         <th scope="col">Service</th>
-                        <th scope="col"></th>
+                        <th scope="col">Email</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -27,7 +26,7 @@
                             <td>{{ data.user.get_full_name }}</td>
                             <td>{{ data.user.phone_number }}</td>
                             <td>{{ data.service }}</td>
-                            <td></td>
+                            <td>{{ data.user.email }}</td>
                         </tr>
                     {% endfor %}
                     </tbody>
@@ -37,4 +36,11 @@
             {% endif %}
         </div>
     </div>
+    {% block extra-js %}
+        <script>
+            $(document).ready(function () {
+                $('#client-table').DataTable();
+            });
+        </script>
+    {% endblock %}
 {% endblock %}

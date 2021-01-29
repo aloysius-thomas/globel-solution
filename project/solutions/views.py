@@ -174,6 +174,7 @@ def reject_client_request_view(request, request_id):
     else:
         cq.status = 'rejected'
         cq.save()
+        messages.error(request, "Request Rejected")
         send_email(
             subject="Your request is rejected",
             message=f'Sorry {cq.name} your request for {cq.get_service_display()} service is rejected',
@@ -404,14 +405,21 @@ def mark_absent(request, obj_id):
 def staff_leave_request_list(request):
     title = 'Staff Leave Requests'
     list_data = Leaves.objects.filter(taken_by__is_staff=True, status='pending')
-    return render(request, 'admin/leave_list.html', {'title': title, 'list_data': list_data})
+    approved = Leaves.objects.filter(taken_by__is_staff=True, status='approved')
+    rejected = Leaves.objects.filter(taken_by__is_staff=True, status='rejected')
+    context = {'title': title, 'list_data': list_data, 'approved': approved, 'rejected': rejected}
+    return render(request, 'admin/leave_list.html', context)
 
 
 @admin_required()
 def student_leave_request_list(request):
     title = 'Staff Leave Requests'
     list_data = Leaves.objects.filter(taken_by__is_student=True, status='pending')
-    return render(request, 'admin/leave_list.html', {'title': title, 'list_data': list_data})
+    approved = Leaves.objects.filter(taken_by__is_student=True, status='approved')
+    rejected = Leaves.objects.filter(taken_by__is_student=True, status='rejected')
+    context = {'title': title, 'list_data': list_data, 'approved': approved, 'rejected': rejected}
+
+    return render(request, 'admin/leave_list.html', context)
 
 
 @login_required
