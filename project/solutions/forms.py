@@ -67,6 +67,7 @@ class StaffForm(UserForm):
         staff_profile = StaffProfile(user=user, position=position, experience=experience, qualification=qualification,
                                      salary=salary, skills=skills)
         staff_profile.save()
+        return user
 
 
 class StudentForm(UserForm):
@@ -89,7 +90,6 @@ class StudentForm(UserForm):
         profile = StudentProfile(age=age, college=college, course=course, project_due_date=project_due_date, fees=fees,
                                  user=user)
         profile.save()
-        print(profile, '*' * 100)
         return user
 
 

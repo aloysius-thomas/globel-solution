@@ -62,7 +62,7 @@ def staff_create_list_view(request):
 @admin_required()
 def student_create_list_view(request):
     title = 'Students'
-    list_data = StudentProfile.objects.all()
+    list_data = StudentProfile.objects.all().order_by('-id')
     if request.method == 'POST':
         form = StudentForm(request.POST)
         if form.is_valid():
