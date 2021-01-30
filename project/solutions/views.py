@@ -467,9 +467,10 @@ def feedback_list_view(request):
 
 
 @login_required
-def month_wise_attendance_list(request):
-    feedback_list = Feedback.objects.all().order_by('-id')
-    context = {'title': 'Feedback', 'feedback_list': feedback_list}
-    return render(request, 'admin/feedback_list.html', context)
-
-
+def month_wise_attendance_list(request, month, year, user_id=None):
+    attendance = Attendance.objects.all()
+    attendance = attendance.filter(date__month=month, date__year=year)
+    if user_id:
+        attendance = attendance.filter(user_id=user_id)
+    context = {'attendance': attendance}
+    return render(request, 'admin/month-wise-attendance.html', context)

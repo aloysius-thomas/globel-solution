@@ -48,7 +48,7 @@
                     <tbody>
                     {% for data in list_data %}
                         <tr>
-                            <td>{{ data.staff.get_full_name }}</td>
+                            <td>{{ data.staff }}</td>
                             <td>{{ data.service.get_service_display }}</td>
                             <td>{{ data.get_status_display }}</td>
                         </tr>

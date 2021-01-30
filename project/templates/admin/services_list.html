@@ -23,10 +23,18 @@
                     <tbody>
                     {% for item in data %}
                         <tr>
-                            <td>{{ item.client.get_full_name }}</td>
-                            <td>{{ item.staff.get_full_name }}</td>
+                            <td>{{ item.client }}</td>
+                            <td> {% if item.staff %}
+                                {{ item.staff }}
+                            {% else %}
+                                unassigned
+                            {% endif %} </td>
                             <td>{{ item.start_date | date }}</td>
-                            <td>{{ item.due_date | date }}</td>
+                            <td>{% if item.due_date %}
+                                {{ item.due_date | date }}
+                            {% else %}
+                                unspecified
+                            {% endif %} </td>
                             <td>{{ item.status }}</td>
                             <td>
                                 <a href="{% url 'service-details-view'  item.id %}">
