@@ -75,6 +75,7 @@
                         <th scope="col">Name</th>
                         <th scope="col">Phone</th>
                         <th scope="col">College</th>
+                        <th scope="col">Email</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -84,6 +85,7 @@
                             <td>{{ data.user.get_full_name }}</td>
                             <td>{{ data.user.phone_number }}</td>
                             <td>{{ data.college }}</td>
+                            <td>{{ data.user.email }}</td>
                         </tr>
                     {% endfor %}
                     </tbody>
