@@ -340,6 +340,8 @@ def accept_job(request, job_id):
     else:
         job.status = 'approved'
         job.save()
+        job.service.staff = request.user
+        job.service.save()
         return redirect('staff-job-requests')
 
 
@@ -462,3 +464,12 @@ def feedback_list_view(request):
     feedback_list = Feedback.objects.all().order_by('-id')
     context = {'title': 'Feedback', 'feedback_list': feedback_list}
     return render(request, 'admin/feedback_list.html', context)
+
+
+@login_required
+def month_wise_attendance_list(request):
+    feedback_list = Feedback.objects.all().order_by('-id')
+    context = {'title': 'Feedback', 'feedback_list': feedback_list}
+    return render(request, 'admin/feedback_list.html', context)
+
+
