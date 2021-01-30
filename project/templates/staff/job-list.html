@@ -45,19 +45,22 @@
                 <table class="table table-hover" id="approved">
                     <thead>
                     <tr>
-                        <th scope="col">Name</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Phone Number</th>
-                        <th scope="col">Service Requested</th>
-                        <th scope="col">Message</th>
+                    <tr>
+                        <th scope="col">Project</th>
+                        <th scope="col">Client</th>
+                        <th scope="col">Client Email</th>
+                        <th scope="col">Due Date</th>
                     </tr>
                     </thead>
                     <tbody>
                     {% for item in approved %}
                         <tr>
-                            <td>{{ item.name }}</td>
-                            <td>{{ item.email }}</td>
-                            <td>{{ item.phone_number }}</td>
+                            <td>{{ item.service.get_service_display }}</td>
+                            <td>{{ item.service.client }}</td>
+                            <td>{{ item.service.client.email }}</td>
+                            <td>{{ item.service.due_date |date }} {% if item.service.due_date %}
+                            {% else %} Not Specified
+                            {% endif %} </td>
                             <td>{{ item.get_service_display }} Days</td>
                             <td>{{ item.message }}</td>
                         </tr>
@@ -76,19 +79,21 @@
                 <table class="table table-hover" id="rejected">
                     <thead>
                     <tr>
-                        <th scope="col">Name</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Phone Number</th>
-                        <th scope="col">Service Requested</th>
-                        <th scope="col">Message</th>
+                        <th scope="col">Project</th>
+                        <th scope="col">Client</th>
+                        <th scope="col">Client Email</th>
+                        <th scope="col">Due Date</th>
                     </tr>
                     </thead>
                     <tbody>
                     {% for item in rejected %}
                         <tr>
-                            <td>{{ item.name }}</td>
-                            <td>{{ item.email }}</td>
-                            <td>{{ item.phone_number }}</td>
+                            <td>{{ item.service.get_service_display }}</td>
+                            <td>{{ item.service.client }}</td>
+                            <td>{{ item.service.client.email }}</td>
+                            <td>{{ item.service.due_date |date }} {% if item.service.due_date %}
+                            {% else %} Not Specified
+                            {% endif %} </td>
                             <td>{{ item.get_service_display }} Days</td>
                             <td>{{ item.message }}</td>
                         </tr>

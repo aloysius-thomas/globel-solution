@@ -29,12 +29,12 @@
                     {% if comment.commented_by.is_client %}
                         <div>
                             <p style="color: green"><i>Client</i></p>
-                            <p>comment.suggestion</p>
+                            <p>{{ comment.suggestion }}</p>
                         </div>
                     {% else %}
                         <div>
                             <p style="color: blueviolet"><i>In Charge</i></p>
-                            <p>comment.suggestion</p>
+                            <p>{{ comment.suggestion }}</p>
                         </div>
                     {% endif %}
                 {% endfor %}
