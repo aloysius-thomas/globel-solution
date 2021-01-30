@@ -8,6 +8,7 @@ from solutions.models import Comments
 from solutions.models import Feedback
 from solutions.models import JobAllocationRequest
 from solutions.models import Leaves
+from solutions.models import Service
 
 
 class UserForm(forms.ModelForm):
@@ -118,7 +119,14 @@ class CommentForm(forms.ModelForm):
 
 
 class JobAssignForm(forms.ModelForm):
+    job_requests = JobAllocationRequest.objects.filter(status='pending')
+    id_list = []
+    for job in job_requests:
+        id_list.append(job.service_id)
+    service_qs = Service.objects.filter(staff__isnull=True)
+    service_qs = service_qs.exclude(id__in=id_list)
     staff = forms.ModelChoiceField(queryset=UserRegistration.objects.filter(is_staff=True, is_superuser=False))
+    service = forms.ModelChoiceField(queryset=service_qs)
 
     class Meta:
         model = JobAllocationRequest
