@@ -372,7 +372,7 @@ def students_attendance(request):
             Attendance.objects.create(user=student, date=today)
 
     pending = Attendance.objects.filter(date=today, status='pending')
-    attendance = Attendance.objects.filter(date=today, status__in=['percent', 'absent'])
+    attendance = Attendance.objects.filter(date=today, status__in=['present', 'absent'])
 
     return render(request, 'staff/attendance.html',
                   {'pending': pending, 'title': title, 'attendance': attendance, })
@@ -385,7 +385,7 @@ def mark_attendance(request, obj_id):
     except Attendance.DoesNotExist:
         return HttpResponseNotFound('Not Found')
     else:
-        attendance.status = 'percent'
+        attendance.status = 'present'
         attendance.save()
         return redirect('staff-students-attendance')
 

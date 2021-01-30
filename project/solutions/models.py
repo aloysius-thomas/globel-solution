@@ -47,7 +47,7 @@ class Notify(models.Model):
 
 class Attendance(models.Model):
     ATTENDANCE_STATUS = (
-        ('percent', 'Percent'),
+        ('present', 'Present'),
         ('absent', 'Absent'),
         ('pending', 'Pending'),
     )
