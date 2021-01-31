@@ -41,3 +41,23 @@ def login_view(request):
     else:
         form = LoginForm()
     return render(request, 'accounts/login.html', {'form': form})
+
+
+def software_development_page_view(request):
+    return render(request, 'services/software-development.html', {})
+
+
+def digital_marketing_page_view(request):
+    return render(request, 'services/digital-marketing.html', {})
+
+
+def mobile_development_page_view(request):
+    return render(request, 'services/mobile-development.html', {})
+
+
+def project_support_page_view(request):
+    return render(request, 'services/project-support.html', {})
+
+
+def contact_us_page_view(request):
+    return render(request, 'services/contact-us.html', {})

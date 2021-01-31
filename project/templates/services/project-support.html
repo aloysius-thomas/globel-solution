@@ -1,0 +1,276 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block contants %}
+    <section class="hero-wrap hero-wrap-2" style="background-image: url('/static/images/service1.jpg');"
+             data-stellar-background-ratio="0.5">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row no-gutters slider-text align-items-end justify-content-center">
+                <div class="col-md-9 ftco-animate pb-5 text-center">
+                    <h1 class="mb-3 bread"><span>Excellence</span></h1>
+                    <h1 class="mb-3 bread">Global Solutions</h1>
+                    <h2 class="mb-3 bread">Services</h2>
+                    <p class="breadcrumbs"><span class="mr-2"><a href="{% url 'home' %}">Home <i
+                            class="fa fa-chevron-right"></i></a></span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="ftco-section services-section">
+        <div class="container">
+            <div class="row justify-content-center pb-5">
+                <div class="col-md-6 heading-section text-center ftco-animate">
+                    <h2 class="mb-4">Project <span>Support</span></h2>
+                    <h3>About Us</h3>
+                    <p style="text-align:justify">With the help of our deeply experienced and proficient IT
+                        professionals, we have been able to provide our clients with beneficial Software Development
+                        Services. Our Project Support for students works include everything from an effortless Content
+                        Management System enabled website to the better compound web-based internet purposes, e-commerce
+                        portals, and social networking development services. We keep with us several years of
+                        involvement in the field of designing web applications practising cutting edge technologies like
+                        , PYTHON, PHP, MySQL, ASP.NET and etc. Our boundless experience includes designing and arranging
+                        a number of web applications for small companies to big corporates. Further, our competence lies
+                        in designing and developing web applications according to the customer requirements
+                    </p>
+                    <h3>iOS Development Service</h3>
+                    <p style="text-align:justify">In this industry from more than 5 years, we have detailed knowledge in
+                        web application development We can establish custom websites, web applications & software on a
+                        wide range of technology platforms We assure successful implementation of students' ideas and
+                        enhancement of their operational excellence Understanding the requirements of each student, our
+                        project support team has a accurate understanding of student's objectives and works with them in
+                        close association to come up with most appropriate project development solutions</p>
+                </div>
+            </div>
+            <div class="row d-flex no-gutters">
+                <div class="col-md-3 d-flex align-self-stretch ftco-animate"><a href="#">
+                    <div class="media block-6 services d-block">
+                        <div class="line"></div>
+                        <div class="icon"><span class="flaticon-web-programming"></span></div>
+                        <div class="media-body">
+                            <h3 class="heading mb-3">Software Development</h3>
+                            <p> We can establish custom websites, web applications & software on a wide range of
+                                technology platforms</p>
+                        </div>
+                </a>
+                </div>
+            </div>
+            <div class="col-md-3 d-flex align-self-stretch ftco-animate"><a href="{% url 'digital-marketing-page' %}">
+                <div class="media block-6 services d-block">
+                    <div class="line"></div>
+                    <div class="icon"><span class="flaticon-stats"></span></div>
+                    <div class="media-body">
+                        <h3 class="heading mb-3">Digital Marketing</h3>
+                        <p>Search Engine Optimization,Content Marketing,Social Media Marketing,Pay Per Click,Affiliate
+                            Marketing</p>
+                    </div>
+            </a>
+            </div>
+        </div>
+        <div class="col-md-3 d-flex align-self-stretch ftco-animate"><a href="{% url 'mobile-development-page' %}">
+            <div class="media block-6 services d-block">
+                <div class="line"></div>
+                <div class="icon"><span class="flaticon-secure"></span></div>
+                <div class="media-body">
+                    <h3 class="heading mb-3">Android/IOS Development</h3>
+                    <p>Operating the services of a top iOS app development company, make your business get better reach
+                        and accessibility. </p>
+                </div>
+            </div>
+        </a>
+        </div>
+        <div class="col-md-3 d-flex align-self-stretch ftco-animate"><a href="{% url 'project-support-page' %}">
+            <div class="media block-6 services d-block">
+                <div class="line"></div>
+                <div class="icon"><span class="flaticon-presentation"></span></div>
+                <div class="media-body">
+                    <h3 class="heading mb-3">Project Support</h3>
+        </a>
+            <p>Project Support for BCA,B.TECH(CS),MCA Students</p>
+        </div>
+    </section>
+
+    <section class="ftco-section ftco-no-pt">
+        <div class="container">
+            <div class="row justify-content-center pb-5">
+                <div class="col-md-12 heading-section text-center ftco-animate">
+                    <h2 class="mb-4">Our Strategic <span>Work</span></h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-lg-3 ftco-animate">
+                    <div class="project">
+                        <div class="img">
+                            <img src="{% static 'images/work-1.jpg' %}" class="img-fluid" alt="Colorlib Template">
+                        </div>
+                        <div class="text text-center">
+                            <span>Web Development</span>
+                            <h3>Best Solution for Information Technology</h3>
+                        </div>
+                        <a href="{% static 'images/work-1.jpg' %}"
+                           class="icon image-popup d-flex justify-content-center align-items-center">
+                            <span class="fa fa-expand"></span>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 ftco-animate">
+                    <div class="project">
+                        <div class="img">
+                            <img src="{% static 'images/work-2.jpg' %}" class="img-fluid" alt="Colorlib Template">
+                        </div>
+                        <div class="text text-center">
+                            <span>Web Application</span>
+                            <h3>Creative Idea Build Up</h3>
+                        </div>
+                        <a href="{% static 'images/work-2.jpg' %}"
+                           class="icon image-popup d-flex justify-content-center align-items-center">
+                            <span class="fa fa-expand"></span>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 ftco-animate">
+                    <div class="project">
+                        <div class="img">
+                            <img src="{% static 'images/work-3.jpg' %}" class="img-fluid" alt="Colorlib Template">
+                        </div>
+                        <div class="text text-center">
+                            <span>Web Development</span>
+                            <h3>Web Design Concept &amp; Web Analysis</h3>
+                        </div>
+                        <a href="{% static 'images/work-3.jpg' %}"
+                           class="icon image-popup d-flex justify-content-center align-items-center">
+                            <span class="fa fa-expand"></span>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 ftco-animate">
+                    <div class="project">
+                        <div class="img">
+                            <img src="{% static 'images/work-4.jpg' %}" class="img-fluid" alt="Colorlib Template">
+                        </div>
+                        <div class="text text-center">
+                            <span>UI/UX Strategy</span>
+                            <h3>Strategy for Enduring Customer Relationships</h3>
+                        </div>
+                        <a href="{% static 'images/work-4.jpg' %}"
+                           class="icon image-popup d-flex justify-content-center align-items-center">
+                            <span class="fa fa-expand"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="ftco-section bg-light ftco-faqs">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 order-md-last">
+                    <div class="img img-video d-flex align-self-stretch align-items-center justify-content-center justify-content-md-center mb-4 mb-sm-0"
+                         style="background-image:url(/static/images/about.jpg);">
+                    </div>
+                    <div class="d-flex mt-3">
+                        <div class="img img-2 mr-md-2 w-100"
+                             style="background-image:url(/static/images/about-1.jpg);"></div>
+                        <div class="img img-2 ml-md-2 w-100"
+                             style="background-image:url(/static/images/about-2.jpg);"></div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="heading-section mb-5 mt-5 mt-lg-0">
+                        <h2 class="mb-3">Frequently Asks Questions</h2>
+                    </div>
+                    <div id="accordion" class="myaccordion w-100" aria-multiselectable="true">
+                        <div class="card">
+                            <div class="card-header p-0" id="headingOne">
+                                <h2 class="mb-0">
+                                    <button href="#collapseOne"
+                                            class="d-flex py-3 px-4 align-items-center justify-content-between btn btn-link"
+                                            data-parent="#accordion" data-toggle="collapse" aria-expanded="true"
+                                            aria-controls="collapseOne">
+                                        <p class="mb-0">How can we help your business?</p>
+                                        <i class="fa" aria-hidden="true"></i>
+                                    </button>
+                                </h2>
+                            </div>
+                            <div class="collapse show" id="collapseOne" role="tabpanel" aria-labelledby="headingOne">
+                                <div class="card-body py-3 px-0">
+                                    <ol>
+                                        <li>We could help you to achieve publicity</li>
+                                        <li>Help you find better clients</li>
+                                        <li>Digitalize your business</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header p-0" id="headingTwo" role="tab">
+                                <h2 class="mb-0">
+                                    <button href="#collapseTwo"
+                                            class="d-flex py-3 px-4 align-items-center justify-content-between btn btn-link"
+                                            data-parent="#accordion" data-toggle="collapse" aria-expanded="false"
+                                            aria-controls="collapseTwo">
+                                        <p class="mb-0">How long does it take to build a website?</p>
+                                        <i class="fa" aria-hidden="true"></i>
+                                    </button>
+                                </h2>
+                            </div>
+                            <div class="collapse" id="collapseTwo" role="tabpanel" aria-labelledby="headingTwo">
+                                <div class="card-body py-3 px-0">
+                                    <ol>
+                                        <li>It depends mostly on your content</li>
+                                        <li>We could help you make it fast</li>
+                                        <li>Our staff to help to add all your ideas</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header p-0" id="headingThree" role="tab">
+                                <h2 class="mb-0">
+                                    <button href="#collapseThree"
+                                            class="d-flex py-3 px-4 align-items-center justify-content-between btn btn-link"
+                                            data-parent="#accordion" data-toggle="collapse" aria-expanded="false"
+                                            aria-controls="collapseThree">
+                                        <p class="mb-0">Can I help your IT Solution for business?</p>
+                                        <i class="fa" aria-hidden="true"></i>
+                                    </button>
+                                </h2>
+                            </div>
+                            <div class="collapse" id="collapseThree" role="tabpanel" aria-labelledby="headingTwo">
+                                <div class="card-body py-3 px-0">
+                                    <ol>
+                                        <li>Ofcourse we are here for it</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header p-0" id="headingFour" role="tab">
+                                <h2 class="mb-0">
+                                    <button href="#collapseFour"
+                                            class="d-flex py-3 px-4 align-items-center justify-content-between btn btn-link"
+                                            data-parent="#accordion" data-toggle="collapse" aria-expanded="false"
+                                            aria-controls="collapseFour">
+                                        <p class="mb-0">What are those requirements for ITSolutions?</p>
+                                        <i class="fa" aria-hidden="true"></i>
+                                    </button>
+                                </h2>
+                            </div>
+                            <div class="collapse" id="collapseFour" role="tabpanel" aria-labelledby="headingTwo">
+                                <div class="card-body py-3 px-0">
+                                    <p>These requirements describe the characteristics of a solution that meet both the
+                                        business and stakeholder requirements. Solution Requirements are functional and
+                                        qualitative. </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

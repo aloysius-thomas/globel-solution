@@ -13,19 +13,19 @@
                 <li class="dropdown nav-item"><a class="nav-link dropdown-toggle" data-toggle="dropdown">Services</a>
                     <ul class="dropdown-menu">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">Software Development</a>
+                            <a href="{% url 'software-development-page' %}" class="nav-link">Software Development</a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">Digital Marketing</a></li>
+                            <a href="{% url 'digital-marketing-page' %}" class="nav-link">Digital Marketing</a></li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">Android/IOS development</a>
+                            <a href="{% url 'mobile-development-page' %}" class="nav-link">Android/IOS development</a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">Project Support</a>
+                            <a href="{% url 'project-support-page' %}" class="nav-link">Project Support</a>
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item"><a href="#" class="nav-link">Contact us</a></li>
+                <li class="nav-item"><a href="{% url 'contact-us-page' %}" class="nav-link">Contact us</a></li>
                 {% if user.is_authenticated %}
                     <li class="nav-item cta"><a href="{% url 'logout' %}" class="nav-link">Logout</a></li>
                 {% else %}
