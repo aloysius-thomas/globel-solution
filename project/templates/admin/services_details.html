@@ -8,12 +8,50 @@
             {% else %}
                 {{ service.get_service_display }}
             {% endif %}
+                {% if not service.finished %}
+                    <div class="float-right">
+                        <button class="btn btn-outline-success" data-toggle="modal" data-target="#exampleModalCenter">
+                            Update Status
+                        </button>
+                        <a href="{% url 'service-finished-view' service.id %}">
+                            <button class="btn btn-outline-primary"> Mark as
+                                finished
+                            </button>
+                        </a>
+                    </div>
+                {% endif %}
             </h3>
+            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="{% url 'service-update-status-view' service.id %}" method="post">
+                                {% csrf_token %}
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                    <textarea name="status" id="" cols="30" rows="7" class="form-control"
+                                              placeholder="Status" required></textarea>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Save changes</button>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <br>
-            <p><b>Client: </b> {{ service.client.get_full_name }}</p>
+            <p><b>Client: </b> {{ service.client }}</p>
             <p><b>In Charge: </b>
                 {% if service.staff %}
-                    {{ service.staff.get_full_name }}
+                    {{ service.staff }}
                 {% else %}
                     Not Assigned
                 {% endif %} </p>
@@ -32,6 +70,8 @@
             <div class="card card-body">
                 <h4>COMMENTS</h4>
                 {% for comment in comments %}
+                    <hr>
+
                     {% if comment.commented_by.is_client %}
                         <div>
                             <p style="color: green"><b>{{ comment.commented_by }}</b>-<i>Client</i></p>

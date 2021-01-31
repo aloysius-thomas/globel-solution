@@ -498,5 +498,24 @@ def update_profile_details(request, service_id):
 
 
 @login_required
-def project_make_finished(request, project_id):
-    pass
+def project_make_finished(request, service_id):
+    try:
+        project = Service.objects.get(id=service_id)
+    except Service.DoesNotExist:
+        return HttpResponseNotFound()
+    else:
+        project.finished = datetime.datetime.now().date()
+        project.status = "Work Finished"
+        project.save()
+    return redirect('service-details-view', project.id)
+
+
+def project_update_status(request, service_id):
+    try:
+        project = Service.objects.get(id=service_id)
+    except Service.DoesNotExist:
+        return HttpResponseNotFound()
+    else:
+        project.status = request.POST.get('status')
+        project.save()
+    return redirect('service-details-view', project.id)

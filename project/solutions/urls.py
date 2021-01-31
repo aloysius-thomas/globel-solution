@@ -17,6 +17,8 @@ from solutions.views import my_projects
 from solutions.views import my_projects_staff
 from solutions.views import programing_languages_create_list_view
 from solutions.views import programing_languages_delete_view
+from solutions.views import project_make_finished
+from solutions.views import project_update_status
 from solutions.views import reject_client_request_view
 from solutions.views import reject_job
 from solutions.views import reject_leave_request
@@ -47,6 +49,8 @@ urlpatterns = [
     path('service/<str:service>/', service_list_view, name='service-list-view'),
     path('service/<int:service_id>/details/', service_detail_view, name='service-details-view'),
     path('service/<int:service_id>/update/', update_profile_details, name='service-update-view'),
+    path('service/<int:service_id>/update-status/', project_update_status, name='service-update-status-view'),
+    path('service/<int:service_id>/finished/', project_make_finished, name='service-finished-view'),
     path('comment/<int:project_id>/', comment_project_view, name='comment-project-view'),
     path('assign-jobs/', assign_job, name='assign-jobs'),
     path('feedback/', write_feedback, name='feedback'),
