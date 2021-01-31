@@ -1,0 +1,40 @@
+{{% extends 'base-admin.html' %}
+{% load crispy_forms_tags %}
+{% block title %}
+    Update Project
+{% endblock %}
+{% block content %}
+    <div class="card">
+        {% if form.non_field_errors %}
+            <div class="alert alert-danger" role="alert">
+                {% for error in form.non_field_errors %}
+                    {{ error }}
+                {% endfor %}
+            </div>
+        {% endif %}
+        <h5 class="card-header">Update Project</h5>
+        <div class=" card-body">
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="form-row">
+                    <div class="form-group col-md-4 mb-0">
+                        {{ form.name|as_crispy_field }}
+                    </div>
+                    <div class="form-group col-md-4 mb-0">
+                        {{ form.due_date|as_crispy_field }}
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+    {% block extra-js %}
+        <script>
+            $(function () {
+                $("#id_due_date").datepicker({
+                    format: 'dd/mm/yyyy',
+                });
+            });
+        </script>
+    {% endblock %}
+{% endblock %}

@@ -18,6 +18,7 @@ class ClientRequests(models.Model):
 
 class Service(models.Model):
     service = models.CharField(choices=SERVICES, max_length=32)
+    name = models.CharField(max_length=128, blank=True, null=True)
     client = models.ForeignKey(UserRegistration, on_delete=models.CASCADE, related_name='service_client')
     staff = models.ForeignKey(UserRegistration, on_delete=models.CASCADE, related_name='service_staff', blank=True,
                               null=True)

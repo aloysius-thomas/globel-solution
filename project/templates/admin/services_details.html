@@ -3,7 +3,12 @@
 {% block content %}
     <div class="container-fluid">
         <div class="card card-body">
-            <h3>{{ service.get_service_display }}</h3>
+            <h3>{% if service.name %}
+                {{ service.name }} - {{ service.get_service_display }}
+            {% else %}
+                {{ service.get_service_display }}
+            {% endif %}
+            </h3>
             <br>
             <p><b>Client: </b> {{ service.client.get_full_name }}</p>
             <p><b>In Charge: </b>
@@ -25,27 +30,36 @@
         </div>
         {% if comments %}
             <div class="card card-body">
+                <h4>COMMENTS</h4>
                 {% for comment in comments %}
                     {% if comment.commented_by.is_client %}
                         <div>
-                            <p style="color: green"><i>Client</i></p>
+                            <p style="color: green"><b>{{ comment.commented_by }}</b>-<i>Client</i></p>
+                            <p>{{ comment.suggestion }}</p>
+                        </div>
+                    {% elif comment.commented_by.is_staff and not comment.commented_by.is_superuser %}
+                        <div>
+                            <p style="color: blueviolet"><b>{{ comment.commented_by }}</b>-<i>In Charge</i></p>
                             <p>{{ comment.suggestion }}</p>
                         </div>
                     {% else %}
                         <div>
-                            <p style="color: blueviolet"><i>In Charge</i></p>
+                            <p style="color: saddlebrown"><b>{{ comment.commented_by }}</b></p>
                             <p>{{ comment.suggestion }}</p>
                         </div>
                     {% endif %}
                 {% endfor %}
             </div>
         {% endif %}
-        <div>
-            <h5>Send comments or suggestions</h5>
-            <form action="{% url 'comment-project-view' service.id %}" method="post">
-                {% csrf_token %}
-                {{ form|crispy }}
-                <button class="btn btn-primary" type="submit">Comment</button>
-            </form>
-        </div>
+        {% if user == service.staff or user == service.client %}
+            <div>
+                <h5>Send comments or suggestions</h5>
+                <form action="{% url 'comment-project-view' service.id %}" method="post">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <button class="btn btn-primary" type="submit">Comment</button>
+                </form>
+            </div>
+        {% endif %}
+    </div>
 {% endblock %}

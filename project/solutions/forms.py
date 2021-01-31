@@ -158,3 +158,14 @@ class LeavesForm(forms.ModelForm):
             'leave_type',
             'comment',
         }
+
+
+class ProjectDetailsUpdateForm(forms.ModelForm):
+    due_date = forms.DateField(input_formats=['%d/%m/%Y'])
+
+    class Meta:
+        model = Service
+        fields = {
+            'name',
+            'due_date'
+        }

@@ -29,6 +29,7 @@ from solutions.views import staff_leave_request_list
 from solutions.views import student_create_list_view
 from solutions.views import student_leave_request_list
 from solutions.views import students_attendance
+from solutions.views import update_profile_details
 from solutions.views import write_feedback
 
 urlpatterns = [
@@ -45,6 +46,7 @@ urlpatterns = [
          name='programing-languages-delete-view'),
     path('service/<str:service>/', service_list_view, name='service-list-view'),
     path('service/<int:service_id>/details/', service_detail_view, name='service-details-view'),
+    path('service/<int:service_id>/update/', update_profile_details, name='service-update-view'),
     path('comment/<int:project_id>/', comment_project_view, name='comment-project-view'),
     path('assign-jobs/', assign_job, name='assign-jobs'),
     path('feedback/', write_feedback, name='feedback'),

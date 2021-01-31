@@ -20,6 +20,7 @@ from solutions.forms import FeedbackForm
 from solutions.forms import JobAssignForm
 from solutions.forms import LanguageForms
 from solutions.forms import LeavesForm
+from solutions.forms import ProjectDetailsUpdateForm
 from solutions.forms import StaffForm
 from solutions.forms import StudentForm
 from solutions.models import Attendance
@@ -226,6 +227,8 @@ def service_detail_view(request, service_id):
         service = Service.objects.get(id=service_id)
     except Service.DoesNotExist:
         return HttpResponseNotFound('<h1>Page not found</h1>')
+    if not service.due_date or not service.name:
+        return redirect('service-update-view', service.id)
     comments = Comments.objects.filter(projects=service)
     form = CommentForm()
     return render(request, 'admin/services_details.html', {'service': service, 'comments': comments, 'form': form})
@@ -474,3 +477,26 @@ def month_wise_attendance_list(request, month, year, user_id=None):
         attendance = attendance.filter(user_id=user_id)
     context = {'attendance': attendance}
     return render(request, 'admin/month-wise-attendance.html', context)
+
+
+@login_required
+def update_profile_details(request, service_id):
+    try:
+        project = Service.objects.get(id=service_id)
+    except Service.DoesNotExist:
+        return HttpResponseNotFound()
+    else:
+        if request.method == 'POST':
+            form = ProjectDetailsUpdateForm(request.POST, instance=project)
+            if form.is_valid():
+                form.save()
+                messages.success(request, 'Project Updated')
+                return redirect('service-details-view', project.id)
+        else:
+            form = ProjectDetailsUpdateForm(instance=project)
+        return render(request, 'admin/services_update.html', {'form': form})
+
+
+@login_required
+def project_make_finished(request, project_id):
+    pass
