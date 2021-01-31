@@ -60,4 +60,4 @@ def project_support_page_view(request):
 
 
 def contact_us_page_view(request):
-    return render(request, 'services/contact-us.html', {})
+    return render(request, 'contact-us.html', {})

@@ -21,7 +21,7 @@
                     <tbody>
                     {% for data in list_data %}
                         <tr>
-                            <td>{{ data.taken_by.get_full_name }}</td>
+                            <td>{{ data.taken_by }}</td>
                             <td>{{ data.from_date | date }} to {{ data.to_date |date }}</td>
                             <td>{{ data.reason }}</td>
                             <td>
@@ -60,7 +60,7 @@
                     <tbody>
                     {% for data in approved %}
                         <tr>
-                            <td>{{ data.taken_by.get_full_name }}</td>
+                            <td>{{ data.taken_by }}</td>
                             <td>{{ data.from_date | date }} to {{ data.to_date |date }}</td>
                             <td>{{ data.reason }}</td>
                             <td>{{ data.get_status_display }}</td>
@@ -90,7 +90,7 @@
                     <tbody>
                     {% for data in rejected %}
                         <tr>
-                            <td>{{ data.taken_by.get_full_name }}</td>
+                            <td>{{ data.taken_by }}</td>
                             <td>{{ data.from_date | date }} to {{ data.to_date |date }}</td>
                             <td>{{ data.reason }}</td>
                             <td>{{ data.get_status_display }}</td>
