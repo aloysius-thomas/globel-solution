@@ -13,6 +13,7 @@ from solutions.views import feedback_list_view
 from solutions.views import job_allocations_for_staff
 from solutions.views import mark_absent
 from solutions.views import mark_attendance
+from solutions.views import month_wise_attendance_list
 from solutions.views import my_projects
 from solutions.views import my_projects_staff
 from solutions.views import programing_languages_create_list_view
@@ -69,4 +70,6 @@ urlpatterns = [
     path('admin/leave-request/<int:obj_id>/approve/', approve_leave_request, name='staff-leave-request-approve'),
     path('admin/leave-request/<int:obj_id>/reject/', reject_leave_request, name='staff-leave-request-reject'),
     path('admin/feedback/', feedback_list_view, name='feedback-list'),
+    path('attendance/<int:month>/<int:year>/<user_id>/', month_wise_attendance_list,
+         name='month-wise-attendance-list'),
 ]

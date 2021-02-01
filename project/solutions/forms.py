@@ -125,6 +125,7 @@ class JobAssignForm(forms.ModelForm):
         for job in job_requests:
             id_list.append(job.service_id)
     except Exception as e:
+        print(e)
         pass
     service_qs = Service.objects.filter(staff__isnull=True)
     service_qs = service_qs.exclude(id__in=id_list)

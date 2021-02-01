@@ -56,6 +56,9 @@ class Attendance(models.Model):
     status = models.CharField(choices=ATTENDANCE_STATUS, max_length=32, default='pending')
     date = models.DateField()
 
+    def __str__(self):
+        return f'{self.user}-{self.date}'
+
 
 class Leaves(models.Model):
     taken_by = models.ForeignKey(UserRegistration, on_delete=models.CASCADE)

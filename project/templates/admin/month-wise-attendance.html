@@ -1,8 +1,5 @@
 {% extends 'base-admin.html' %}
 {% block content %}
-    {{ attendance }}
-    {{ student }}
-
     {% if student %}
         <h3>Attendance of {{ student }} {{ month }}/{{ year }}</h3>
         <div class="card card-body">
@@ -14,7 +11,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                {% for i, j in attendance %}
+                {% for i, j in attendance.items %}
                     <tr>
                         <td>{{ i }}</td>
                         <td>{{ j }}</td>
@@ -25,22 +22,59 @@
             </table>
         </div>
     {% else %}
-        <h3>Attendance of {{ month }}/{{ year }}</h3>
+        <h3>Attendance of {{ month }}/{{ year }}
+            <div class="btn-group-sm float-right">
+                <a href="{% url 'month-wise-attendance-list' previous_month previous_year 'all' %}" class="btn btn-success">Previous</a>
+                <a href="{% url 'month-wise-attendance-list' this_month this_year 'all' %}" class="btn btn-success">This Month</a>
+                <a href="{% url 'month-wise-attendance-list' next_month next_year 'all' %}" class="btn btn-success">Next</a>
+            </div>
+        </h3>
+
         <div class="card card-body">
-            <table class="table table-bordered">
+            <table class="table table-bordered" width="100%">
                 <thead>
                 <tr>
                     <th scope="col">Student/Attendance</th>
-                    <th scope="col">Status</th>
+                    {% for day in month_days %}
+                        <th scope="col">{{ day }}</th>
+                    {% endfor %}
                 </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>{{ i }}</td>
-                        <td>{{ j }}</td>
 
+                {% for k, j in attendance.items %}
+                    <tr>
+                        <td>{{ j.name }}</td>
+                        {% for a, b in j.status.items %}
+                            {% if b == 'Not marked' %}
+                                <td style="background-color: #0b0b0b"></td>
+                            {% elif b == 'present' %}
+                                <td style="background-color: green"></td>
+                            {% elif b == 'absent' %}
+                                <td style="background-color: red"></td>
+                            {% else %}
+                                <td style="background-color: grey"></td>
+                            {% endif %}
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
                 </tbody>
             </table>
         </div>
+        <div class="row">
+            <div class="col-2">
+                <p class="p-3" style="background-color: black; color: white">Not marked</p>
+            </div>
+            <div class="col-2">
+                <p class="p-3" style="background-color: red; color: white">Absent</p>
+            </div>
+            <div class="col-2">
+                <p class="p-3" style="background-color: green; color: white">Present</p>
+            </div>
+            <div class="col-2">
+                <p class="p-3" style="background-color: grey; color: white">Pending</p>
+            </div>
+        </div>
+
     {% endif %}
 {% endblock %}

@@ -470,12 +470,63 @@ def feedback_list_view(request):
 
 
 @login_required
-def month_wise_attendance_list(request, month, year, user_id=None):
+def month_wise_attendance_list(request, month, year, user_id='all'):
+    this_month = datetime.datetime.now().month
+    this_year = datetime.datetime.now().year
+    if month == 12:
+        next_month = 1
+        next_year = year + 1
+    else:
+        next_month = month + 1
+        next_year = year
+    if month == 1:
+        previous_month = 12
+        previous_year = year - 1
+    else:
+        previous_month = month - 1
+        previous_year = year
+
+    students = UserRegistration.objects.filter(is_student=True)
     attendance = Attendance.objects.all()
     attendance = attendance.filter(date__month=month, date__year=year)
-    if user_id:
+    student_name = None
+    import calendar
+    last_day_of_month = calendar.monthrange(int(year), int(month))[1]
+    month_days = [i + 1 for i in range(last_day_of_month)]
+    if user_id != 'all':
         attendance = attendance.filter(user_id=user_id)
-    context = {'attendance': attendance}
+        if attendance:
+            student_name = attendance.last().user
+        days = {i + 1: 'Not marked' for i in range(last_day_of_month)}
+        for day in attendance:
+            days.update({day.date.day: day.get_status_display()})
+        attendance = days
+    else:
+        data = {}
+        temp_attendance = attendance
+        for student in students:
+            months = temp_attendance.filter(user=student)
+            days = {i + 1: 'Not marked' for i in range(last_day_of_month)}
+            for date in months:
+                days.update({date.date.day: date.status})
+
+            data.update({student.id: {'name': student.get_full_name(), 'status': days}})
+            attendance = data
+
+    context = {
+        'attendance': attendance,
+        'student': student_name,
+        'month': month,
+        'year': year,
+        'month_days': month_days,
+        'range': len(month_days),
+        'next_month': next_month,
+        'next_year': next_year,
+        'previous_month': previous_month,
+        'previous_year': previous_year,
+        'this_month': this_month,
+        'this_year': this_year,
+    }
     return render(request, 'admin/month-wise-attendance.html', context)
 
 
