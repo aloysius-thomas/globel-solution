@@ -1,7 +1,8 @@
 {% extends 'base-admin.html' %}
 {% block content %}
     {% if student %}
-        <h3>Attendance of {{ student }} {{ month }}/{{ year }}</h3>
+        <h3>Attendance of {{ student }} {{ month }}/{{ year }}
+        </h3>
         <div class="card card-body">
             <table class="table table-bordered">
                 <thead>
@@ -24,9 +25,12 @@
     {% else %}
         <h3>Attendance of {{ month }}/{{ year }}
             <div class="btn-group-sm float-right">
-                <a href="{% url 'month-wise-attendance-list' previous_month previous_year 'all' %}" class="btn btn-success">Previous</a>
-                <a href="{% url 'month-wise-attendance-list' this_month this_year 'all' %}" class="btn btn-success">This Month</a>
-                <a href="{% url 'month-wise-attendance-list' next_month next_year 'all' %}" class="btn btn-success">Next</a>
+                <a href="{% url 'month-wise-attendance-list' previous_month previous_year 'all' %}"
+                   class="btn btn-success">Previous</a>
+                <a href="{% url 'month-wise-attendance-list' this_month this_year 'all' %}" class="btn btn-success">This
+                    Month</a>
+                <a href="{% url 'month-wise-attendance-list' next_month next_year 'all' %}"
+                   class="btn btn-success">Next</a>
             </div>
         </h3>
 

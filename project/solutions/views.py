@@ -380,7 +380,8 @@ def students_attendance(request):
     attendance = Attendance.objects.filter(date=today, status__in=['present', 'absent'])
 
     return render(request, 'staff/attendance.html',
-                  {'pending': pending, 'title': title, 'attendance': attendance, })
+                  {'pending': pending, 'title': title, 'attendance': attendance, 'month': today.month,
+                   'year': today.year})
 
 
 @login_required
@@ -470,7 +471,8 @@ def feedback_list_view(request):
 
 
 @login_required
-def month_wise_attendance_list(request, month, year, user_id='all'):
+def month_wise_attendance_list(request, month=0, year=0, user_id='all'):
+    import calendar
     this_month = datetime.datetime.now().month
     this_year = datetime.datetime.now().year
     if month == 12:
@@ -488,13 +490,17 @@ def month_wise_attendance_list(request, month, year, user_id='all'):
 
     students = UserRegistration.objects.filter(is_student=True)
     attendance = Attendance.objects.all()
-    attendance = attendance.filter(date__month=month, date__year=year)
+    if month and year:
+        attendance = attendance.filter(date__month=month, date__year=year)
+        last_day_of_month = calendar.monthrange(int(year), int(month))[1]
+
+    else:
+        attendance = attendance.filter(date__month=this_month, date__year=this_year)
+        last_day_of_month = calendar.monthrange(int(this_year), int(this_month))[1]
     student_name = None
-    import calendar
-    last_day_of_month = calendar.monthrange(int(year), int(month))[1]
     month_days = [i + 1 for i in range(last_day_of_month)]
     if user_id != 'all':
-        attendance = attendance.filter(user_id=user_id)
+        attendance = attendance.filter(user_id=request.user.id)
         if attendance:
             student_name = attendance.last().user
         days = {i + 1: 'Not marked' for i in range(last_day_of_month)}
@@ -516,8 +522,8 @@ def month_wise_attendance_list(request, month, year, user_id='all'):
     context = {
         'attendance': attendance,
         'student': student_name,
-        'month': month,
-        'year': year,
+        'month': month if month else this_month,
+        'year': year if year else this_year,
         'month_days': month_days,
         'range': len(month_days),
         'next_month': next_month,
