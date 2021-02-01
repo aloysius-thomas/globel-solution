@@ -142,7 +142,7 @@ def approve_client_request_view(request, request_id):
                 else:
                     break
             client = UserRegistration(username=username, phone_number=cq.phone_number, address='not provided',
-                                      email=cq.email, first_name=cq.name)
+                                      email=cq.email, first_name=cq.name, is_client=True)
             client.set_password(password)
             client.save()
             profile = ClientProfile.objects.create(user=client, service=cq.service)
