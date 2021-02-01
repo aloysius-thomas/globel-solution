@@ -55,7 +55,7 @@
                         <div class="form-group col-md-4 mb-0">
                             {{ form.course|as_crispy_field }}
                         </div>
-                        <div class="form-group col-md-6 mb-0">
+                        <div class="form-group col-md-4 mb-0">
                             {{ form.project_due_date|as_crispy_field }}
                         </div>
                         <div class="form-group col-md-4 mb-0">
@@ -100,6 +100,11 @@
         <script>
             $(document).ready(function () {
                 $('#student-table').DataTable();
+            });
+            $(function () {
+                $("#id_project_due_date").datepicker({
+                    format: 'dd/mm/yyyy',
+                });
             });
         </script>
     {% endblock %}
