@@ -119,10 +119,13 @@ class CommentForm(forms.ModelForm):
 
 
 class JobAssignForm(forms.ModelForm):
-    job_requests = JobAllocationRequest.objects.filter(status='pending')
     id_list = []
-    for job in job_requests:
-        id_list.append(job.service_id)
+    try:
+        job_requests = JobAllocationRequest.objects.filter(status='pending')
+        for job in job_requests:
+            id_list.append(job.service_id)
+    except Exception as e:
+        pass
     service_qs = Service.objects.filter(staff__isnull=True)
     service_qs = service_qs.exclude(id__in=id_list)
     staff = forms.ModelChoiceField(queryset=UserRegistration.objects.filter(is_staff=True, is_superuser=False))

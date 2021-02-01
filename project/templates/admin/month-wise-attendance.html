@@ -1,0 +1,46 @@
+{% extends 'base-admin.html' %}
+{% block content %}
+    {{ attendance }}
+    {{ student }}
+
+    {% if student %}
+        <h3>Attendance of {{ student }} {{ month }}/{{ year }}</h3>
+        <div class="card card-body">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th scope="col">Day</th>
+                    <th scope="col">Status</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for i, j in attendance %}
+                    <tr>
+                        <td>{{ i }}</td>
+                        <td>{{ j }}</td>
+                    </tr>
+                {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <h3>Attendance of {{ month }}/{{ year }}</h3>
+        <div class="card card-body">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th scope="col">Student/Attendance</th>
+                    <th scope="col">Status</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ i }}</td>
+                        <td>{{ j }}</td>
+
+                </tbody>
+            </table>
+        </div>
+    {% endif %}
+{% endblock %}
