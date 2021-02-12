@@ -1,4 +1,7 @@
 from django import forms
+from django.core.validators import MaxValueValidator
+from django.core.validators import MinValueValidator
+from django.core.validators import RegexValidator
 
 from accounts.models import phone_regex
 from accounts.models import ProgrammingLanguages
@@ -9,6 +12,8 @@ from solutions.models import Feedback
 from solutions.models import JobAllocationRequest
 from solutions.models import Leaves
 from solutions.models import Service
+
+alphanumeric = RegexValidator(r'^[a-zA-Z]*$', 'Only alphabets characters are allowed.')
 
 
 class UserForm(forms.ModelForm):
@@ -24,8 +29,8 @@ class UserForm(forms.ModelForm):
         }
 
     username = forms.CharField()
-    first_name = forms.CharField()
-    last_name = forms.CharField()
+    first_name = forms.CharField(validators=[alphanumeric])
+    last_name = forms.CharField(validators=[alphanumeric])
     password = forms.CharField(widget=forms.PasswordInput())
     address = forms.TextInput()
     phone_number = forms.CharField(validators=[phone_regex])
@@ -72,7 +77,8 @@ class StaffForm(UserForm):
 
 
 class StudentForm(UserForm):
-    age = forms.CharField()
+    age = forms.IntegerField(validators=[MinValueValidator(0),
+                                         MaxValueValidator(35)])
     college = forms.CharField()
     course = forms.ModelChoiceField(queryset=ProgrammingLanguages.objects.all())
     project_due_date = forms.DateTimeField(input_formats=['%d/%m/%Y'])
