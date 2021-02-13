@@ -17,5 +17,3 @@ class LoginForm(forms.Form):
             raise forms.ValidationError("invalid credentials")
 
         return super(LoginForm, self).clean()
-
-

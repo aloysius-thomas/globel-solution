@@ -4,9 +4,10 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$',
-                             message=
-                             "Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.")
+phone_regex = RegexValidator(
+    regex=r'^\+?1?\d{9,15}$',
+    message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed."
+)
 
 SERVICES = (
     ('web-design', 'Web Design'),
@@ -32,7 +33,7 @@ class UserRegistration(AbstractUser):
     is_student = models.BooleanField(default=False)
 
     def __str__(self):
-        return  self.get_full_name() if self.get_full_name() else self.username
+        return self.get_full_name() if self.get_full_name() else self.username
 
 
 class ProgrammingLanguages(models.Model):
@@ -50,6 +51,9 @@ class StaffProfile(models.Model):
     salary = models.CharField(max_length=256)
     skills = models.CharField(max_length=256)
 
+    def __str__(self):
+        return f'{self.user} Profile'
+
 
 class TeachingSubjects(models.Model):
     teacher = models.ForeignKey(to=UserRegistration, on_delete=models.CASCADE)
@@ -57,6 +61,9 @@ class TeachingSubjects(models.Model):
 
     class Meta:
         unique_together = ['teacher', 'language']
+
+    def __str__(self):
+        return f'{self.user} Profile'
 
 
 class StudentProfile(models.Model):
@@ -66,6 +73,9 @@ class StudentProfile(models.Model):
     course = models.ForeignKey(to=ProgrammingLanguages, on_delete=models.CASCADE)
     project_due_date = models.DateField()
     fees = models.IntegerField()
+
+    def __str__(self):
+        return f'{self.user} Profile'
 
 
 @receiver(post_save, sender=StudentProfile)
@@ -79,3 +89,6 @@ def create_auth_token(sender, instance=None, created=False, **kwargs):
 class ClientProfile(models.Model):
     user = models.ForeignKey(to=UserRegistration, on_delete=models.CASCADE)
     service = models.CharField(choices=SERVICES, max_length=32)
+
+    def __str__(self):
+        return f'{self.user} Profile'
