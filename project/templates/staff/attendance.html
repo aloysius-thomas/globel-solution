@@ -4,8 +4,8 @@
 {% endblock %}
 {% block content %}
     <h3>{{ title }}
-        <a class="btn btn-primary btn-sm float-right" href="{% url 'month-wise-attendance-list'  month year 'all' %}">Month
-            Wise List</a>
+        <a class="btn btn-primary btn-sm float-right" href="{% url 'month-wise-attendance-list' month year 'all' %}">
+            Month Wise List</a>
     </h3>
     {% if pending %}
         <div class="card">
