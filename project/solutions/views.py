@@ -420,7 +420,7 @@ def staff_leave_request_list(request):
 
 @admin_required()
 def student_leave_request_list(request):
-    title = 'Staff Leave Requests'
+    title = 'Student Leave Requests'
     list_data = Leaves.objects.filter(taken_by__is_student=True, status='pending')
     approved = Leaves.objects.filter(taken_by__is_student=True, status='approved')
     rejected = Leaves.objects.filter(taken_by__is_student=True, status='rejected')

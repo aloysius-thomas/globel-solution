@@ -15,6 +15,12 @@ class ClientRequests(models.Model):
     service = models.CharField(choices=SERVICES, max_length=32)
     status = models.CharField(choices=STATUS, max_length=32, default='pending')
 
+    def __str__(self):
+        string = f'Client Request'
+        if self.client:
+            string = f'Client Request of {self.client}'
+        return string
+
 
 class Service(models.Model):
     service = models.CharField(choices=SERVICES, max_length=32)
@@ -40,10 +46,16 @@ class Comments(models.Model):
     suggestion = models.CharField(max_length=512)
     created_at = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return f'Comment on {self.projects} by {self.commented_by}'
+
 
 class Notify(models.Model):
     user = models.ForeignKey(UserRegistration, on_delete=models.CASCADE)
     notification = models.CharField(max_length=256)
+
+    def __str__(self):
+        return f'Notification For {self.user}'
 
 
 class Attendance(models.Model):
@@ -69,6 +81,9 @@ class Leaves(models.Model):
     comment = models.CharField(max_length=50, blank=True, null=True)
     status = models.CharField(choices=STATUS, max_length=32, default='pending')
 
+    def __str__(self):
+        return f'Leave request of {self.taken_by}'
+
 
 class JobAllocationRequest(models.Model):
     staff = models.ForeignKey(UserRegistration, on_delete=models.CASCADE)
@@ -76,8 +91,14 @@ class JobAllocationRequest(models.Model):
     status = models.CharField(choices=STATUS, max_length=32, default='pending')
     created_on = models.DateTimeField(auto_now_add=True, )
 
+    def __str__(self):
+        return f'Job allocation {self.service} for {self.staff}'
+
 
 class Feedback(models.Model):
     user = models.ForeignKey(to=UserRegistration, on_delete=models.CASCADE)
     feedback = models.TextField()
     added_on = models.DateField(auto_now_add=True, blank=True, null=True)
+
+    def __str__(self):
+        return f'User feedback {self.user}'
